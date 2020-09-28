@@ -6,7 +6,7 @@ import { authHeader } from '../../Helpers/authHeader';
 export function requestRecipeData() {
     return function (dispatch) {
         dispatch(requestRecipeDataPending());
-        axios.get('api/v1/recipes', {headers: authHeader()})
+        axios.get('http://localhost:4042/api/v1/recipes', {headers: authHeader()})
         .then(res => {
             dispatch(requestRecipeDataSuccess(res.data))
         })
@@ -31,10 +31,12 @@ function requestRecipeDataSuccess(data) {
 // Request a single recipe by recipe_id
 export function requestRecipeDataById(recipe_id) {
     return function (dispatch) {
+        console.log('test');
         dispatch(requestRecipeDataByIdPending());
-        axios.get(`api/v1/recipes/${recipe_id}`, {headers: authHeader()})
+        axios.get(`http://localhost:4042/api/v1/recipes/${recipe_id}`, {headers: authHeader()})
         .then(res => {
-            dispatch(requestRecipeDataByIdSuccess(res.data))
+            console.log(res);
+            dispatch(requestRecipeDataByIdSuccess(res.data));
         })
         .catch(err => {
             console.log(err);
