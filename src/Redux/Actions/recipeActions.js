@@ -31,7 +31,6 @@ function requestRecipeDataSuccess(data) {
 // Request a single recipe by recipe_id
 export function requestRecipeDataById(recipe_id) {
     return function (dispatch) {
-        console.log('test');
         dispatch(requestRecipeDataByIdPending());
         axios.get(`http://localhost:4042/api/v1/recipes/${recipe_id}`, {headers: authHeader()})
         .then(res => {
