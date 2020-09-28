@@ -1,0 +1,6 @@
+export const authConsts = {
+    LOGIN_PENDING: 'LOGIN_PENDING',
+    LOGIN_SUCCESS: 'LOGIN_SUCCESS',
+    REFRESH_LOGIN: 'REFRESH_LOGIN',
+    LOGOUT: 'LOGOUT'
+};
