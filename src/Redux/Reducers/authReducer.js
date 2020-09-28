@@ -16,7 +16,6 @@ export default function reducer(previousState = initialState, action) {
                 loading: true
             });
         case authConsts.LOGIN_SUCCESS:
-            console.log('success')
             return ({
                 ...previousState,
                 // users: action.payload.data,
