@@ -1,7 +1,7 @@
 import { recipeConsts } from '../Consts/recipeConsts';
 
 const initialState = {
-    recipe: {recipe_id: '', recipe_name: '', photo_url: '', prep_time: '', cook_time: '', directions: ''},
+    recipe: {recipe_id: 0, recipe_name: '', photo_url: '', prep_time: '', cook_time: '', directions: ''},
     recipes: [],
     loading: false
 };
