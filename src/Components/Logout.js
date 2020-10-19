@@ -6,7 +6,6 @@ import { Redirect } from 'react-router-dom';
 function Logout(props) {
     useEffect(() => {
         props.dispatch(logout);
-        // props.history.push('/login');
     })
     return (
         <Redirect to='/login' />
