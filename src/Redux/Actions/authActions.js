@@ -23,16 +23,11 @@ export function loginPending() {
         type: authConsts.LOGIN_PENDING
     };
 }
+
 export function loginSuccess() {
     return {
         type: authConsts.LOGIN_SUCCESS
     };
-}
-export function logout() {
-    localStorage.removeItem('accessToken');
-    return {
-        type: authConsts.LOGOUT
-    }
 }
 
 export function refreshLogin() {
@@ -53,5 +48,12 @@ export function refreshLogin() {
         }
         dispatch(loginSuccess());
         return true;
+    }
+}
+
+export function logout() {
+    localStorage.clear();
+    return {
+        type: authConsts.LOGOUT
     }
 }
