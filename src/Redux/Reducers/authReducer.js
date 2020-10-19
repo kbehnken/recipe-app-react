@@ -24,7 +24,7 @@ export default function reducer(previousState = initialState, action) {
             });
         case authConsts.LOGOUT:
             return ({
-                ...previousState,
+                ...initialState,
                 loggedIn: false
             });
         default:
