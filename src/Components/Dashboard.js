@@ -1,46 +1,95 @@
-import React, { useEffect } from 'react';
+import React, { useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
-import { requestRecipeData } from '../Redux/Actions/recipeActions';
-import { isLoggedIn } from './../Helpers/isLoggedIn';
-import '../App.css';
+import Loader from 'react-loader-spinner';
+import { requestFavoriteRecipeDataByUserId, requestRecentRecipeData } from '../Redux/Actions/recipeActions';
+import { getUserInfo } from '../Helpers/getUserInfo';
+import Nav from './Nav';
+import '../Styles/main.css';
 
 function Dashboard(props) {
     const dispatch = useDispatch();
+    const user = getUserInfo();
     useEffect(() => {
-        if (props.recipes.length === 0 && props.loading === false) {
-            dispatch(requestRecipeData());
-        }
-    })
-    isLoggedIn();
-    const mappedRecipes = props.recipes.map((field) => {
-        return(
-            <div key={field.recipe_id}>
+        dispatch(requestFavoriteRecipeDataByUserId(user.user_id));
+        dispatch(requestRecentRecipeData());
+    },[dispatch, user.user_id])
+    const mappedRecipes = props.recipes.map((item) => {
+        return (
+            <div key={item.recipe_id}>
                 <div>
-                    <h1>
-                        <Link to={{pathname: '/recipe-card/' + field.recipe_id}}>
-                            {field.recipe_name}
+                    <h2>
+                        <Link to={{pathname: '/recipe-card/' + item.recipe_id}}>
+                            {item.recipe_name}
                         </Link>
-                    </h1>
-                    {field.photo_url}<br />
-                    <label>Author: </label>{field.author}<br />
-                    <label>Prep Time: </label>{field.prep_time}<br />
-                    <label>Cook Time: </label>{field.cook_time}
+                    </h2>
+                    {item.photo_url}<br />
+                    <label>Contributor: </label>{item.contributor}<br />
+                    <label>Prep Time: </label>{item.prep_time}<br />
+                    <label>Cook Time: </label>{item.cook_time}<br />
+                </div>
+            </div>
+        );
+    })
+    const mappedRecentRecipes = props.recentRecipes.map((item) => {
+        return (
+            <div key={item.recipe_id}>
+                <div>
+                    <h2>
+                        <Link to={{pathname: '/recipe-card/' + item.recipe_id}}>
+                            {item.recipe_name}
+                        </Link>
+                    </h2>
+                    {item.photo_url}<br />
+                    <label>Contributor: </label>{item.contributor}<br />
+                    <label>Prep Time: </label>{item.prep_time}<br />
+                    <label>Cook Time: </label>{item.cook_time}<br />
                 </div>
             </div>
         );
     })
     return(
-        <div>
+        <div id='outer-content-container'>
             {props.loading ?
                 (
-                    <p>
-                        Loading. Please wait.
-                    </p>
+                    <div>
+                        <p>
+                            Loading. Pease wait.
+                        </p>
+                        <Loader type='ThreeDots' color='#00b300' height={50} width={50} timeout={5000} />
+                    </div>
                 ) :
                 (
                     <div>
-                        {mappedRecipes}
+                        <div>
+                            <Nav />
+                        </div>
+                        <h1>
+                            Welcome, {user.first_name}!
+                        </h1>
+                        {mappedRecipes.length === 0 ?
+                            (
+                                <p>You have no favorite recipes to display. <Link to='all-recipes'>Click here</Link> to browse all recipes.</p>
+                            ) :
+                            (
+                                <div>
+                                    {mappedRecipes}
+                                </div>
+                            )
+                        }
+                        <div>
+                            <h1>
+                                Recently Added Recipes
+                            </h1>
+                            <div>
+                                    {mappedRecentRecipes}
+                            </div>
+                            <div>
+                                <Link to='all-recipes'>
+                                    View All
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                 )
             }
@@ -51,6 +100,7 @@ function Dashboard(props) {
 function mapStateToProps(reduxState) {
     return {
         recipes: reduxState.recipe.recipes,
+        recentRecipes: reduxState.recipe.recentRecipes,
         loading: reduxState.recipe.loading
     }
 }
