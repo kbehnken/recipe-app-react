@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { login } from '../Redux/Actions/authActions';
 import { Redirect } from 'react-router-dom';
+import '../Styles/main.css';
 
 function Login(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    
     if (props.loggedIn === true) {
         return (
             <Redirect to='/' />
@@ -14,8 +14,8 @@ function Login(props) {
     }
 
     return (
-        <div>
-            <div>
+        <div id='outer-login-container'>
+            <div id='login-container'>
                 <div>
                     <input type='text' placeholder='Enter email address' value={email} onChange={e => setEmail(e.target.value)}></input>
                 </div>
