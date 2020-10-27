@@ -10,4 +10,5 @@ a:hover {
 nav {
     display: flex;
     justify-content: space-evenly;
+    margin: 25px 0px 25px 0px
 }
