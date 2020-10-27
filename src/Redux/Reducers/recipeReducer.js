@@ -4,6 +4,7 @@ const initialState = {
     recipe: {recipe_id: 0, recipe_name: '', imageFile: null, photo_url: '', prep_time: '', cook_time: '', ingredients: [], directions: '', is_favorite: false},
     recipes: [],
     recentRecipes: [],
+    searchResults: [],
     loading: false
 };
 
@@ -153,6 +154,17 @@ export default function reducer(previousState = initialState, action) {
             return ({
                 ...previousState,
                 recipe: initialState.recipe
+            });
+        case recipeConsts.GET_SEARCH_RESULTS_PENDING:
+            return ({
+                ...previousState,
+                loading: true
+            });
+        case recipeConsts.GET_SEARCH_RESULTS_SUCCESS:
+            return ({
+                ...previousState,
+                loading: false,
+                searchResults: action.payload
             });
         default: return (previousState);
     }

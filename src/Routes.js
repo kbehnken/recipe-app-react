@@ -8,6 +8,7 @@ import MyRecipes from './Components/MyRecipes'
 import RecipeCard from './Components/RecipeCard';
 import Login from './Components/Login';
 import Logout from './Components/Logout';
+import SearchResults from './Components/SearchResults.js';
 
 export default (
     <Switch>
@@ -16,6 +17,7 @@ export default (
         <PrivateRoute path='/add-recipe' component={RecipeForm} />
         <PrivateRoute path='/my-recipes' component={MyRecipes} />
         <PrivateRoute path='/recipe-card/:recipe_id' component={RecipeCard} />
+        <PrivateRoute path='/search-results' component={SearchResults} />
         <Route path='/login' component={Login} />
         <Route path='/logout' component={Logout} />
     </Switch>

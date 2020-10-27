@@ -4,6 +4,7 @@ import { connect, useDispatch } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import { requestFavoriteRecipeDataByUserId, requestRecentRecipeData } from '../Redux/Actions/recipeActions';
 import { getUserInfo } from '../Helpers/getUserInfo';
+import Search from './Search'
 import Nav from './Nav';
 import '../Styles/main.css';
 
@@ -49,7 +50,7 @@ function Dashboard(props) {
         );
     })
     return(
-        <div id='outer-content-container'>
+        <div className='outer-content-container'>
             {props.loading ?
                 (
                     <div>
@@ -67,6 +68,7 @@ function Dashboard(props) {
                         <h1>
                             Welcome, {user.first_name}!
                         </h1>
+                        <Search />
                         {mappedRecipes.length === 0 ?
                             (
                                 <p>You have no favorite recipes to display. <Link to='all-recipes'>Click here</Link> to browse all recipes.</p>

@@ -108,7 +108,8 @@ function requestRecentRecipeDataSuccess(data) {
 }
 
 export function requestRecipeDataByAuthor(author) {
-    let data = axios.get(`http://localhost:4042/api/v1/recipes/${author}`).then(res => res.data)
+    let data = axios.get(`http://localhost:4042/api/v1/recipes/${author}`)
+    .then(res => res.data)
     return {
         type: recipeConsts.REQUEST_RECIPE_DATA_BY_AUTHOR,
         payload: data
@@ -120,6 +121,7 @@ export function addRecipeData() {
     return function (dispatch, getState) {
         const { recipe } = getState().recipe;
         let formData = new FormData();
+
         formData.append('recipe_name', recipe.recipe_name)
         formData.append('photo_url', recipe.photo_url)
         formData.append('imageFile', recipe.imageFile)
@@ -136,7 +138,7 @@ export function addRecipeData() {
                 'content-type': 'multipart/form-data'
             }
         })
-        .then(res => {
+        .then(() => {
             dispatch(addRecipeDataSuccess())
         })
         .catch(err => {
@@ -287,5 +289,36 @@ export function removeIngredientData(ingredient_id) {
 export function clearRecipeData() {
     return {
         type: recipeConsts.CLEAR_RECIPE_DATA
+    };
+}
+
+// Search all recipe names
+export function getSearchResults(search) {
+    return function (dispatch) {
+        dispatch(getSearchResultsPending());
+        return axios.post('http://localhost:4042/api/v1/search-recipes', {
+            search
+        }, 
+        {
+            headers: authHeader()
+        })
+        .then(res => {
+            dispatch(getSearchResultsSuccess(res.data))
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    }
+    
+}
+function getSearchResultsPending() {
+    return {
+        type: recipeConsts.GET_SEARCH_RESULTS_PENDING
+    };
+}
+function getSearchResultsSuccess(data) {
+    return {
+        type: recipeConsts.GET_SEARCH_RESULTS_SUCCESS,
+        payload: data
     };
 }
