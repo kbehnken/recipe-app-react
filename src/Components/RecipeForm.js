@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { CgAddR, CgRemoveR } from 'react-icons/cg';
 import { addRecipeData, updateActiveRecipeData, clearRecipeData, addIngredientData, removeIngredientData } from '../Redux/Actions/recipeActions';
-import '../Styles/main.css'
+import '../Styles/main.css';
 import { Link } from 'react-router-dom';
 
 function RecipeForm(props) {
@@ -15,7 +15,7 @@ function RecipeForm(props) {
     };
     const mappedIngredients = recipe.ingredients.map((item, index) => {
         return (
-            <div className='flex-parent-container' key={index}>
+            <div className='flex-between' key={index}>
                 <div>
                    {item.quantity} {item.ingredient_name}<br />
                 </div>
@@ -27,7 +27,7 @@ function RecipeForm(props) {
     })
 
     return (
-        <div id='outer-content-container'>
+        <div className='outer-content-container'>
             <p>
                 Fill out the form below and click the Add button to add a new recipe to the recipe box.
             </p>
@@ -60,11 +60,11 @@ function RecipeForm(props) {
                 <div>
                     <label>Add Ingredients:</label>
                 </div>
-                <div className='flex-parent-container'>
+                <div className='flex-between'>
                     <label>Quantity: </label>
                     <label>Name: </label>
                 </div>
-                <div className='flex-parent-container'>
+                <div className='flex-between'>
                     <input type='text' name='quantity' onChange={e => setQuantity(e.target.value)} value={quantity} />
                     <input type='text' name='ingredient' onChange={e => setIngredientName(e.target.value)} value={ingredient_name} /><br />
                     <CgAddR title='Add an ingredient' size={50} style={{ color: '#00b300' }} onClick={() => {
