@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import { requestRecipeData } from '../Redux/Actions/recipeActions';
+import RecipeTile from './RecipeTile';
+import Nav from './Nav';
 import '../Styles/main.css';
 
 function AllRecipes(props) {
@@ -14,23 +15,11 @@ function AllRecipes(props) {
 
     const mappedRecipes = props.recipes.map((item) => {
         return(
-            <div key={item.recipe_id}>
-                <div>
-                    <h2>
-                        <Link to={{pathname: '/recipe-card/' + item.recipe_id}}>
-                            {item.recipe_name}
-                        </Link>
-                    </h2>
-                    {item.photo_url}<br />
-                    <label>Contributor: </label>{item.contributor}<br />
-                    <label>Prep Time: </label>{item.prep_time}<br />
-                    <label>Cook Time: </label>{item.cook_time}<br /><br />
-                </div>
-            </div>
+            <RecipeTile  key={item.recipe_id} recipe={item} />
         );
     })
     return(
-        <div id='outer-content-container'>
+        <div className='outer-content-container'>
             {props.loading ?
                 (
                     <div>
@@ -42,7 +31,12 @@ function AllRecipes(props) {
                 ) :
                 (
                     <div>
-                        {mappedRecipes}
+                        <div>
+                            <Nav />
+                        </div>
+                        <div className='flex-between-wrap'>
+                            {mappedRecipes}
+                        </div>
                     </div>
                 )
             }
