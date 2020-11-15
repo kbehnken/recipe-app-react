@@ -1,54 +1,35 @@
-import React, { useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import { requestFavoriteRecipeDataByUserId, requestRecentRecipeData } from '../Redux/Actions/recipeActions';
 import { getUserInfo } from '../Helpers/getUserInfo';
 import Search from './Search'
+import RecipeTile from './RecipeTile';
 import Nav from './Nav';
 import '../Styles/main.css';
 
 function Dashboard(props) {
     const dispatch = useDispatch();
     const user = getUserInfo();
+
     useEffect(() => {
         dispatch(requestFavoriteRecipeDataByUserId(user.user_id));
         dispatch(requestRecentRecipeData());
     },[dispatch, user.user_id])
+
     const mappedRecipes = props.recipes.map((item) => {
         return (
-            <div key={item.recipe_id}>
-                <div>
-                    <h2>
-                        <Link to={{pathname: '/recipe-card/' + item.recipe_id}}>
-                            {item.recipe_name}
-                        </Link>
-                    </h2>
-                    {item.photo_url}<br />
-                    <label>Contributor: </label>{item.contributor}<br />
-                    <label>Prep Time: </label>{item.prep_time}<br />
-                    <label>Cook Time: </label>{item.cook_time}<br />
-                </div>
-            </div>
+            <RecipeTile  key={item.recipe_id} recipe={item} />
         );
     })
+
     const mappedRecentRecipes = props.recentRecipes.map((item) => {
         return (
-            <div key={item.recipe_id}>
-                <div>
-                    <h2>
-                        <Link to={{pathname: '/recipe-card/' + item.recipe_id}}>
-                            {item.recipe_name}
-                        </Link>
-                    </h2>
-                    {item.photo_url}<br />
-                    <label>Contributor: </label>{item.contributor}<br />
-                    <label>Prep Time: </label>{item.prep_time}<br />
-                    <label>Cook Time: </label>{item.cook_time}<br />
-                </div>
-            </div>
+            <RecipeTile  key={item.recipe_id} recipe={item} />
         );
     })
+
     return(
         <div className='outer-content-container'>
             {props.loading ?
@@ -71,20 +52,23 @@ function Dashboard(props) {
                         <Search />
                         {mappedRecipes.length === 0 ?
                             (
-                                <p>You have no favorite recipes to display. <Link to='all-recipes'>Click here</Link> to browse all recipes.</p>
+                                <p>
+                                    You have no favorite recipes to display. <Link to='all-recipes'>Click here</Link> to browse all recipes.
+                                </p>
                             ) :
                             (
-                                <div>
+                                <div className='flex-between-wrap'>
                                     {mappedRecipes}
                                 </div>
                             )
                         }
                         <div>
+                            <hr />
                             <h1>
                                 Recently Added Recipes
                             </h1>
-                            <div>
-                                    {mappedRecentRecipes}
+                            <div className='flex-between-wrap'>
+                                {mappedRecentRecipes}
                             </div>
                             <div>
                                 <Link to='all-recipes'>
