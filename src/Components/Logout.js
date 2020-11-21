@@ -5,15 +5,12 @@ import { Redirect } from 'react-router-dom';
 
 function Logout(props) {
     useEffect(() => {
-        props.dispatch(logout);
+        props.dispatch(logout());
     })
+
     return (
         <Redirect to='/login' />
     );
 }
 
-function mapStateToProps(reduxState) {
-    return {};
-}
-
-export default connect(mapStateToProps)(Logout);
+export default connect()(Logout);
