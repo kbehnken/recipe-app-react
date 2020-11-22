@@ -1,13 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Routes from './Routes';
-import './App.css';
+import { NotificationContainer } from 'react-notifications';
 
-function App(props) {
+function App() {
   return (
-     <Router>
-        {Routes}
-     </Router>
+      <div>
+         <NotificationContainer />
+         <Router>
+            {Routes}
+         </Router>
+      </div>
   );
 }
 
