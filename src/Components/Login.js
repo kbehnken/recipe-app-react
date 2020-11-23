@@ -25,7 +25,7 @@ function Login(props) {
         <div id='outer-login-container'>
             <div id='login-container'>
                 <div>
-                    <TextField required type='email' variant='outlined' label='Email Address' value={email} onChange={e => setEmail(e.target.value)} style={{width: '100%'}} />
+                    <TextField required type='email' variant='outlined' label='Email Address' autoFocus={true} value={email} onChange={e => setEmail(e.target.value)} style={{width: '100%'}} />
                 </div>
                 {showPassword === false ?
                     (
