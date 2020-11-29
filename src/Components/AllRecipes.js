@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import { requestRecipeData } from '../Redux/Actions/recipeActions';
+import Search from './Search'
 import RecipeTile from './RecipeTile';
 import Nav from './Nav';
 import '../Styles/main.css';
@@ -19,27 +20,32 @@ function AllRecipes(props) {
         );
     })
     return(
-        <div className='outer-content-container'>
-            {props.loading ?
-                (
-                    <div>
-                        <p>
-                            Loading. Pease wait.
-                        </p>
-                        <Loader type="ThreeDots" color="#00b300" height={50} width={50} timeout={5000} />
-                    </div>
-                ) :
-                (
-                    <div>
+        <div>
+            <div>
+                <Nav />
+            </div>
+            <div className='outer-content-container'>
+                {props.loading ?
+                    (
                         <div>
-                            <Nav />
+                            <p>
+                                Loading. Pease wait.
+                            </p>
+                            <Loader type="ThreeDots" color="#00b300" height={50} width={50} timeout={5000} />
                         </div>
-                        <div className='flex-between-wrap'>
-                            {mappedRecipes}
+                    ) :
+                    (
+                        <div>
+                            <div>
+                                <Search />
+                            </div>
+                            <div className='flex-between-wrap'>
+                                {mappedRecipes}
+                            </div>
                         </div>
-                    </div>
-                )
-            }
+                    )
+                }
+            </div>
         </div>
     );
 }
