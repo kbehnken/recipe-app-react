@@ -132,7 +132,7 @@ function ChangePassword(props) {
                             Cancel
                         </button>
                     <button type='button' onClick={() => changePassword()}>
-                        Change Password
+                        Save
                     </button>
                 </div>
             </div>
