@@ -1,0 +1,23 @@
+#outer-login-container {
+    width: 50%;
+    height: 75vh;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: 25px;
+}
+
+#login-container {
+    background-color: #fff;
+    width: 50%;
+    text-align: center;
+    border: 2px solid #00b300;
+    border-radius: 5px;
+    padding: 25px;
+}
+
+#login-container div {
+    margin: 0px 0px 10px;
+}
