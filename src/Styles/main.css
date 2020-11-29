@@ -42,7 +42,7 @@ img {
     margin: 10px;
 }
 
-#recipe-card, .recipe-form {
+#recipe-card, .form-container {
     width: 80%;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -55,16 +55,20 @@ img {
     display: block;
 }
 
-.recipe-form div {
-    margin: 0px 0px 10px;
-}
-
 .outer-content-container {
     width: 80%;
     min-height: calc(100vh - 75px);
     background-color: #fff;
     margin: auto;
     padding: 50px 25px 25px;
+}
+
+.form-container div {
+    margin: 0px 0px 10px;
+}
+
+.search {
+    margin: 0px 0px 25px;
 }
 
 .recipe-tile {
@@ -79,10 +83,6 @@ img {
 
 .float-left {
     float: left;
-}
-
-.form-container div {
-    margin: 0px 0px 10px;
 }
 
 .flex-between {

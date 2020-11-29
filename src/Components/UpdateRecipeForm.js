@@ -92,7 +92,7 @@ function UpdateRecipeForm(props) {
                             <p>
                                 &nbsp;
                             </p>
-                            <form className='recipe-form'>
+                            <form className='form-container'>
                                 <div>
                                     <TextField {...(!recipe.recipe_name && {error: true, helperText: 'Recipe name cannot be blank.' })} required name='recipe_name' variant='outlined' label='Recipe Name' autoFocus={true} style={{width: '100%'}} onChange={e => props.updateActiveRecipeData(e.target.name, e.target.value)} value={recipe.recipe_name} />
                                 </div>

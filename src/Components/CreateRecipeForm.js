@@ -58,7 +58,7 @@ function CreateRecipeForm(props) {
                 <p style={{textAlign: 'center'}}>
                     Fill out the form below and click the Add button to add a new recipe to the recipe box.<br /><br />
                 </p>
-                <div className='recipe-form'>
+                <div className='form-container'>
                     <div>
                         <TextField {...(!recipe.recipe_name && {error: true, helperText: 'Recipe name cannot be blank.' })} required name='recipe_name' variant='outlined' label='Recipe Name' autoFocus={true} style={{width: '100%'}} onChange={e => props.updateActiveRecipeData(e.target.name, e.target.value)} value={recipe.recipe_name} />
                     </div>

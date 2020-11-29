@@ -12,7 +12,7 @@ function Search() {
     const history = useHistory();
 
     return (
-        <div className='form-container'>
+        <div className='search'>
             <TextField variant='outlined' label='Search all recipes' onKeyPress={e => {
                 if (e.key === 'Enter') {
                     dispatch(getSearchResults(search))
