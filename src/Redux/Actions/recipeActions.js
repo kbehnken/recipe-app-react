@@ -123,7 +123,6 @@ export function addRecipeData() {
         let formData = new FormData();
 
         formData.append('recipe_name', recipe.recipe_name)
-        formData.append('photo_url', recipe.photo_url)
         formData.append('imageFile', recipe.imageFile)
         formData.append('prep_time', recipe.prep_time)
         formData.append('cook_time', recipe.cook_time)
@@ -161,7 +160,6 @@ export function updateStoredRecipeData() {
         let formData = new FormData();
 
         formData.append('recipe_name', recipe.recipe_name)
-        formData.append('photo_url', recipe.photo_url)
         formData.append('imageFile', recipe.imageFile)
         formData.append('prep_time', recipe.prep_time)
         formData.append('cook_time', recipe.cook_time)
