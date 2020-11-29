@@ -127,7 +127,7 @@ export function addRecipeData() {
         formData.append('imageFile', recipe.imageFile)
         formData.append('prep_time', recipe.prep_time)
         formData.append('cook_time', recipe.cook_time)
-        formData.append('ingredients', recipe.ingredients)
+        formData.append('ingredients', JSON.stringify(recipe.ingredients))
         formData.append('directions', recipe.directions)
         dispatch(addRecipeDataPending());
 
@@ -141,9 +141,6 @@ export function addRecipeData() {
         .then(() => {
             dispatch(addRecipeDataSuccess())
         })
-        .catch(err => {
-            console.log(err);
-        });
     }
 }
 function addRecipeDataPending() {
@@ -157,16 +154,44 @@ function addRecipeDataSuccess() {
     };
 }
 
-export function updateStoredRecipeData(recipe_name, photo_url, prep_time, cook_time, directions, recipe_id) {
-    return {
-        type: recipeConsts.UPDATE_STORED_RECIPE_DATA,
-        payload: axios.put(`http://localhost:4042/api/v1/recipes/${recipe_id}`, {
-            recipe_name,
-            photo_url,
-            prep_time,
-            cook_time,
-            directions
+// Update a recipe by recipeId
+export function updateStoredRecipeData() {
+    return function (dispatch, getState) {
+        const { recipe } = getState().recipe;
+        let formData = new FormData();
+
+        formData.append('recipe_name', recipe.recipe_name)
+        formData.append('photo_url', recipe.photo_url)
+        formData.append('imageFile', recipe.imageFile)
+        formData.append('prep_time', recipe.prep_time)
+        formData.append('cook_time', recipe.cook_time)
+        formData.append('ingredients', JSON.stringify(recipe.ingredients))
+        formData.append('directions', recipe.directions)
+        dispatch(updateStoredRecipeDataPending());
+        
+        return axios.put(`http://localhost:4042/api/v1/recipes/${recipe.recipe_id}`, formData,
+        {
+            headers: {
+                ...authHeader(),
+                'content-type': 'multipart/form-data'
+            }
         })
+        .then(() => {
+            dispatch(updateStoredRecipeDataSuccess())
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    }
+}
+function updateStoredRecipeDataPending() {
+    return {
+        type: recipeConsts.UPDATE_STORED_RECIPE_DATA_PENDING
+    };
+}
+function updateStoredRecipeDataSuccess() {
+    return {
+        type: recipeConsts.UPDATE_STORED_RECIPE_DATA_SUCCESS
     };
 }
 
