@@ -11,12 +11,19 @@ import '../Styles/main.css';
 function CreateRecipeForm(props) {
     const dispatch = useDispatch();
     const history = useHistory();
-    const [ingredient_name, setIngredientName] = useState('');
     const [quantity, setQuantity] = useState('');
+    const [ingredient_name, setIngredientName] = useState('');
     const { recipe } = props;
     const ImageThumbnail = ({image}) => {
         return <img src={URL.createObjectURL(image)} alt='' height='100px' />;
     };
+    const addIngredient = (() => {
+        if (quantity && ingredient_name) {
+            props.addIngredientData(ingredient_name, quantity);
+            setIngredientName('');
+            setQuantity('');
+        }
+    })
     const handleSubmit = function() {
         if (recipe.recipe_name && recipe.prep_time && recipe.cook_time) {
             dispatch(addRecipeData())
@@ -79,11 +86,7 @@ function CreateRecipeForm(props) {
                     <div>
                         <TextField name='quantity' variant='outlined' label='Quantity' style={{ marginRight: '10px' }} onChange={e => setQuantity(e.target.value)} value={quantity} />
                         <TextField name='ingredient' variant='outlined' label='Ingredient' onChange={e => setIngredientName(e.target.value)} value={ingredient_name} />
-                        <CgAddR title='Add an ingredient' size={60} style={{ color: '#00b300', cursor: 'pointer' }} onClick={() => {
-                            props.addIngredientData(ingredient_name, quantity);
-                            setIngredientName('');
-                            setQuantity('');
-                        }} />
+                        <CgAddR title='Add an ingredient' size={60} style={{ color: '#00b300', cursor: 'pointer' }} onClick={() => {addIngredient()}} />
                     </div>
                     <div style={{paddingBottom: '15px'}}>
                         {mappedIngredients}
