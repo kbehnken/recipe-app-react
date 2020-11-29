@@ -11,10 +11,16 @@ function Profile() {
             </div>
             <div className='outer-content-container'>
                 <div>
+                    <h1>
+                        Update Personal Info
+                    </h1>
                     <UserInfo />
                 </div>
                 <hr />
                 <div>
+                    <h1>
+                        Change Password
+                    </h1>
                     <ChangePassword />
                 </div>
             </div>
