@@ -149,7 +149,7 @@ export default function reducer(previousState = initialState, action) {
                     ...previousState.recipe,
                     ingredients: previousState.recipe.ingredients.filter((item, index) => index !== action.payload)
                 }
-            })
+            });
         case recipeConsts.CLEAR_RECIPE_DATA:
             return ({
                 ...previousState,
