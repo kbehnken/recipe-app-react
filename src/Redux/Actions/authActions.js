@@ -1,6 +1,7 @@
 import { authConsts } from '../Consts/authConsts';
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
+import { NotificationManager } from 'react-notifications';
 
 // TODO: Needs expired token and 401 validation
 export function login(email, password) {
@@ -12,8 +13,11 @@ export function login(email, password) {
             dispatch(loginSuccess());
         })
         .catch(err => {
-            console.log(err);
-            console.log('Failure');
+            if (err && err.response.status === 401) {
+                NotificationManager.error('Your login attempt failed. Confirm your email address and password are correct and try again.');
+            } else {
+            NotificationManager.error('Login failed.')
+            }
         })
     };
 }
@@ -43,7 +47,7 @@ export function refreshLogin() {
             return false;
         }
         if (tokenExp * 1000 <= Date.now()) {
-            console.log('toke expired');
+            console.log('token expired');
            return false;
         }
         dispatch(loginSuccess());
