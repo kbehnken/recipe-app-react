@@ -4,33 +4,34 @@ import { FaCamera } from 'react-icons/fa';
 import { authHeader } from '../Helpers/authHeader';
 
 function RecipeTile(props) {
-    const { recipe_id, recipe_name, photo_url, contributor, prep_time, cook_time } = props.recipe;
-    const url=`http://localhost:3000/api/v1/recipes/photos/${recipe_id}`;
+    const { recipe_id, recipe_name, contributor, prep_time, cook_time } = props.recipe;
+    const url=`http://localhost:4042/api/v1/recipes/photos/${recipe_id}`;
     const [src, setSrc] = useState('');
+    const [imgFetched, setImgFetched] = useState(false);
     const [imgLoading, setImgLoading] = useState(false);
 
     useEffect(() => {
-        if (src === '' && !imgLoading) {
+        if (!imgFetched && !imgLoading) {
             setImgLoading(true);
             fetch(url, {headers: authHeader()})
-            .then(res => {
-                return res.blob();
-            })
-            .then(blob => {
-                setSrc(URL.createObjectURL(blob));
+            .then(async res => {
+                if (res.status === 200) {
+                    setSrc(URL.createObjectURL(await res.blob()));
+                }
                 setImgLoading(false);
+                setImgFetched(true);
             })
             .catch(err => {
                 console.log(err);
             });  
         }
-    },[recipe_id, imgLoading, src, url])
+    },[recipe_id, imgLoading, imgFetched, src, url])
 
     return (
         <div>
             <div className='recipe-tile'>
                 <div>
-                    {photo_url ?
+                    {src ?
                         (
                             <img src={src} alt={recipe_name} style={{width: '100%', height: 'auto'}} />
                         ) :
