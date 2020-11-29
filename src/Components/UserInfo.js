@@ -15,7 +15,7 @@ function UserInfo(props) {
     const [last_name, setLastName] = useState(user.last_name);
     const [email, setEmail] = useState(user.email);
     const updateUserInfo = () => {
-        axios.put(`http://localhost:4042/api/v1/users/${user.user_id}`, {first_name, last_name, email}, {headers: authHeader()})
+        axios.put(`${process.env.REACT_APP_API_PROTOCOL}${process.env.REACT_APP_API_SERVER}:${process.env.REACT_APP_API_PORT}/api/v1/users/${user.user_id}`, {first_name, last_name, email}, {headers: authHeader()})
         .then((res) => {
             console.log(res);
             localStorage.setItem('accessToken', JSON.stringify(res.data.accessToken));

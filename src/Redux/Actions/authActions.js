@@ -7,7 +7,7 @@ import { NotificationManager } from 'react-notifications';
 export function login(email, password) {
     return (dispatch) => {
         dispatch(loginPending())
-        axios.post('http://localhost:4042/api/v1/login', { email, password })
+        axios.post(`${process.env.REACT_APP_API_PROTOCOL}${process.env.REACT_APP_API_SERVER}:${process.env.REACT_APP_API_PORT}/api/v1/login`, { email, password })
         .then(res => {
             localStorage.setItem('accessToken', JSON.stringify(res.data.accessToken));
             dispatch(loginSuccess());

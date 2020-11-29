@@ -19,7 +19,7 @@ function ChangePassword(props) {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const changePassword = () => {
         if (newPassword === confirmPassword) {
-            axios.put('http://localhost:4042/api/v1/change-password', {newPassword}, {headers: authHeader()})
+            axios.put(`${process.env.REACT_APP_API_PROTOCOL}${process.env.REACT_APP_API_SERVER}:${process.env.REACT_APP_API_PORT}/api/v1/change-password`, {newPassword}, {headers: authHeader()})
             .then(() => {
                 setNewPassword('');
                 setConfirmPassword('');

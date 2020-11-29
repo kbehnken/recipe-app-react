@@ -15,7 +15,7 @@ function RecipeCard(props) {
     const dispatch = useDispatch();
     const { user_id } = getUserInfo();
     const recipe_id = parseInt(useParams().recipe_id);
-    const url=`http://localhost:4042/api/v1/recipes/photos/${recipe_id}`;
+    const url=`${process.env.REACT_APP_API_PROTOCOL}${process.env.REACT_APP_API_SERVER}:${process.env.REACT_APP_API_PORT}/api/v1/recipes/photos/${recipe_id}`;
     const { recipe, loading } = props;
     const [src, setSrc] = useState('');
     const [imgFetched, setImgFetched] = useState(false);

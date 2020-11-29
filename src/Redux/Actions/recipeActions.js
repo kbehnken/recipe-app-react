@@ -7,7 +7,7 @@ import { getUserInfo } from '../../Helpers/getUserInfo';
 export function requestRecipeData() {
     return function (dispatch) {
         dispatch(requestRecipeDataPending());
-        axios.get('http://localhost:4042/api/v1/recipes', {headers: authHeader()})
+        axios.get(`${process.env.REACT_APP_API_PROTOCOL}${process.env.REACT_APP_API_SERVER}:${process.env.REACT_APP_API_PORT}/api/v1/recipes`, {headers: authHeader()})
         .then(res => {
             dispatch(requestRecipeDataSuccess(res.data))
         })
@@ -33,7 +33,7 @@ function requestRecipeDataSuccess(data) {
 export function requestRecipeDataByUserId(user_id) {
     return function (dispatch) {
         dispatch(requestRecipeDataByUserIdPending());
-        axios.get(`http://localhost:4042/api/v1/recipes-by-author/${user_id}`, {headers: authHeader()})
+        axios.get(`${process.env.REACT_APP_API_PROTOCOL}${process.env.REACT_APP_API_SERVER}:${process.env.REACT_APP_API_PORT}/api/v1/recipes-by-author/${user_id}`, {headers: authHeader()})
         .then(res => {
             dispatch(requestRecipeDataByUserIdSuccess(res.data))
         })
@@ -59,7 +59,7 @@ function requestRecipeDataByUserIdSuccess(data) {
 export function requestRecipeDataById(recipe_id) {
     return function (dispatch) {
         dispatch(requestRecipeDataByIdPending());
-        axios.get(`http://localhost:4042/api/v1/recipes/${recipe_id}`, {headers: authHeader()})
+        axios.get(`${process.env.REACT_APP_API_PROTOCOL}${process.env.REACT_APP_API_SERVER}:${process.env.REACT_APP_API_PORT}/api/v1/recipes/${recipe_id}`, {headers: authHeader()})
         .then(res => {
             dispatch(requestRecipeDataByIdSuccess(res.data));
         })
@@ -85,7 +85,7 @@ function requestRecipeDataByIdSuccess(data) {
 export function requestRecentRecipeData() {
     return function (dispatch) {
         dispatch(requestRecentRecipeDataPending());
-        axios.get('http://localhost:4042/api/v1/recent-recipes', {headers: authHeader()})
+        axios.get(`${process.env.REACT_APP_API_PROTOCOL}${process.env.REACT_APP_API_SERVER}:${process.env.REACT_APP_API_PORT}/api/v1/recent-recipes`, {headers: authHeader()})
         .then(res => {
             dispatch(requestRecentRecipeDataSuccess(res.data))
         })
@@ -108,7 +108,7 @@ function requestRecentRecipeDataSuccess(data) {
 }
 
 export function requestRecipeDataByAuthor(author) {
-    let data = axios.get(`http://localhost:4042/api/v1/recipes/${author}`)
+    let data = axios.get(`${process.env.REACT_APP_API_PROTOCOL}${process.env.REACT_APP_API_SERVER}:${process.env.REACT_APP_API_PORT}/api/v1/recipes/${author}`)
     .then(res => res.data)
     return {
         type: recipeConsts.REQUEST_RECIPE_DATA_BY_AUTHOR,
@@ -131,7 +131,7 @@ export function addRecipeData() {
         formData.append('directions', recipe.directions)
         dispatch(addRecipeDataPending());
 
-        return axios.post('http://localhost:4042/api/v1/recipes', formData,
+        return axios.post(`${process.env.REACT_APP_API_PROTOCOL}${process.env.REACT_APP_API_SERVER}:${process.env.REACT_APP_API_PORT}/api/v1/recipes`, formData,
         {
             headers: {
                 ...authHeader(),
@@ -169,7 +169,7 @@ export function updateStoredRecipeData() {
         formData.append('directions', recipe.directions)
         dispatch(updateStoredRecipeDataPending());
         
-        return axios.put(`http://localhost:4042/api/v1/recipes/${recipe.recipe_id}`, formData,
+        return axios.put(`${process.env.REACT_APP_API_PROTOCOL}${process.env.REACT_APP_API_SERVER}:${process.env.REACT_APP_API_PORT}/api/v1/recipes/${recipe.recipe_id}`, formData,
         {
             headers: {
                 ...authHeader(),
@@ -206,7 +206,7 @@ export function updateActiveRecipeData(field, value) {
 export function removeRecipeData(recipe_id) {
     return ({
         type: recipeConsts.REMOVE_RECIPE_DATA,
-        payload: axios.delete(`http://localhost:4042/api/v1/recipes/${recipe_id}`)
+        payload: axios.delete(`${process.env.REACT_APP_API_PROTOCOL}${process.env.REACT_APP_API_SERVER}:${process.env.REACT_APP_API_PORT}/api/v1/recipes/${recipe_id}`)
     });
 }
 
@@ -214,7 +214,7 @@ export function removeRecipeData(recipe_id) {
 export function requestFavoriteRecipeDataByUserId(user_id) {
     return function (dispatch) {
         dispatch(requestFavoriteRecipeDataByUserIdPending());
-        axios.get(`http://localhost:4042/api/v1/recipes/favorites/${user_id}`, {headers: authHeader()})
+        axios.get(`${process.env.REACT_APP_API_PROTOCOL}${process.env.REACT_APP_API_SERVER}:${process.env.REACT_APP_API_PORT}/api/v1/recipes/favorites/${user_id}`, {headers: authHeader()})
         .then(res => {
             dispatch(requestFavoriteRecipeDataByUserIdSuccess(res.data))
         })
@@ -241,7 +241,7 @@ export function addFavoriteRecipeData() {
         const { recipe_id } = getState().recipe.recipe
         console.log(getState().recipe)
         dispatch(addFavoriteRecipeDataPending());
-        axios.post('http://localhost:4042/api/v1/recipes/favorites', {
+        axios.post(`${process.env.REACT_APP_API_PROTOCOL}${process.env.REACT_APP_API_SERVER}:${process.env.REACT_APP_API_PORT}/api/v1/recipes/favorites`, {
             user_id: getUserInfo().user_id,
             recipe_id: recipe_id
         },
@@ -271,7 +271,7 @@ function addFavoriteRecipeDataSuccess() {
 export function removeFavoriteRecipeData(recipe_id) {
     return function (dispatch) {
         dispatch(removeFavoriteRecipeDataPending());
-        axios.delete(`http://localhost:4042/api/v1/recipes/favorites/${recipe_id}`, {headers: authHeader()})
+        axios.delete(`${process.env.REACT_APP_API_PROTOCOL}${process.env.REACT_APP_API_SERVER}:${process.env.REACT_APP_API_PORT}/api/v1/recipes/favorites/${recipe_id}`, {headers: authHeader()})
         .then(res => {
             dispatch(removeFavoriteRecipeDataSuccess(res.data))
         })
@@ -321,7 +321,7 @@ export function clearRecipeData() {
 export function getSearchResults(search) {
     return function (dispatch) {
         dispatch(getSearchResultsPending());
-        return axios.post('http://localhost:4042/api/v1/search-recipes', {
+        return axios.post(`${process.env.REACT_APP_API_PROTOCOL}${process.env.REACT_APP_API_SERVER}:${process.env.REACT_APP_API_PORT}/api/v1/search-recipes`, {
             search
         }, 
         {
