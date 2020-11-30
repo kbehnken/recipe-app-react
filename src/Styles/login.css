@@ -1,17 +1,15 @@
 #outer-login-container {
-    width: 50%;
-    height: 75vh;
-    border-radius: 5px;
+    width: 60%;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: auto;
-    padding: 25px;
 }
 
 #login-container {
     background-color: #fff;
-    width: 50%;
+    width: 80%;
     text-align: center;
     border: 2px solid #00b300;
     border-radius: 5px;
