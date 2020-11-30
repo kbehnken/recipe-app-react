@@ -135,10 +135,8 @@ function RecipeCard(props) {
                                     <div style={{textAlign: 'center', marginBottom: '15px'}}>
                                         <label>DIRECTIONS </label>
                                     </div>
-                                    <div style={{fontStyle: 'italic', width: '80%', margin: 'auto'}}>
-                                        <pre>
-                                            {recipe.directions}
-                                        </pre>
+                                    <div className='directions'>
+                                        {recipe.directions}
                                     </div>
                                 </div>
                             </div>

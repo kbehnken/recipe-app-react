@@ -55,6 +55,11 @@ img {
     display: block;
 }
 
+.directions {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
 .outer-content-container {
     width: 80%;
     min-height: calc(100vh - 75px);
