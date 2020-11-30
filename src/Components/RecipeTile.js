@@ -29,29 +29,31 @@ function RecipeTile(props) {
 
     return (
         <div>
-            <div className='recipe-tile'>
-                <div>
-                    {src ?
-                        (
-                            <img src={src} alt={recipe_name} style={{width: '100%', height: 'auto'}} />
-                        ) :
-                        (
-                            <div style={{backgroundColor: '#dddddd', color: '#9a9a9a', borderRadius: '5px', textAlign: 'center', padding: '10px', fontWeight: '700', fontSize: '18pt'}}>
-                                <FaCamera title='No photo available' size={100} style={{ color: '#9a9a9a' }} /><br /><br/>
-                                NO PHOTO AVAILABLE
-                            </div>
-                        )
-                    }
+            <Link to={{pathname: '/recipe-card/' + recipe_id}} style={{color: '#424242'}}>
+                <div className='recipe-tile'>
+                    <div>
+                        {src ?
+                            (
+                                <img src={src} alt={recipe_name} style={{width: '100%', height: 'auto'}} />
+                            ) :
+                            (
+                                <div style={{backgroundColor: '#dddddd', color: '#9a9a9a', borderRadius: '5px', textAlign: 'center', padding: '10px', fontWeight: '700', fontSize: '18pt'}}>
+                                    <FaCamera title='No photo available' size={100} style={{ color: '#9a9a9a' }} /><br /><br/>
+                                    NO PHOTO AVAILABLE
+                                </div>
+                            )
+                        }
+                    </div>
+                    <h2>
+                        <Link to={{pathname: '/recipe-card/' + recipe_id}}>
+                            {recipe_name}
+                        </Link>
+                    </h2>
+                    Contributed by {contributor}<br />
+                    Prep time {prep_time}<br />
+                    Cook time {cook_time}<br />
                 </div>
-                <h2>
-                    <Link to={{pathname: '/recipe-card/' + recipe_id}}>
-                        {recipe_name}
-                    </Link>
-                </h2>
-                Contributed by {contributor}<br />
-                Prep time {prep_time}<br />
-                Cook time {cook_time}<br />
-            </div>
+            </Link>
         </div>
     );
 }
