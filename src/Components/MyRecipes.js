@@ -1,4 +1,5 @@
 import React, { useEffect} from 'react';
+import { Link } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import { requestRecipeDataByUserId } from '../Redux/Actions/recipeActions';
@@ -41,9 +42,18 @@ function MyRecipes(props) {
                             <div>
                                 <Search />
                             </div>
-                            <div className='flex-between-wrap'>
-                                {mappedRecipes}
-                            </div>
+                            {mappedRecipes.length === 0 ?
+                                (
+                                    <p style={{textAlign: 'center'}}>
+                                        You have not contributed any recipes to the recipe box. <Link to='add-recipe'>Click here</Link> to add a recipe.
+                                    </p>
+                                ) :
+                                (
+                                    <div className='flex-between-wrap'>
+                                        {mappedRecipes}
+                                    </div>
+                                )
+                            }
                         </div>
                     )
                 }
