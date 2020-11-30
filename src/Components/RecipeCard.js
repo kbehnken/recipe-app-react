@@ -136,7 +136,9 @@ function RecipeCard(props) {
                                         <label>DIRECTIONS </label>
                                     </div>
                                     <div style={{fontStyle: 'italic', width: '80%', margin: 'auto'}}>
-                                        {recipe.directions}
+                                        <pre>
+                                            {recipe.directions}
+                                        </pre>
                                     </div>
                                 </div>
                             </div>
