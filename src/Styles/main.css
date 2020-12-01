@@ -78,7 +78,8 @@ img {
 
 .recipe-tile {
     background-color: #fff;
-    width: 285px;
+    width: 275px;
+    cursor: pointer;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.087);
@@ -110,4 +111,23 @@ img {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+}
+
+.Toastify__toast--success {
+    background-color: #00b300;
+    border-radius: 5px;
+}
+
+.Toastify__toast--error {
+    background-color: #ff0000;
+    border-radius: 5px;
+}
+
+.Toastify__close-button {
+    background-color: transparent;
+}
+
+.Toastify__close-button:hover, .Toastify__close-button:focus {
+    background-color: transparent;
+    color: #000;
 }
