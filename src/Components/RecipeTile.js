@@ -11,20 +11,24 @@ function RecipeTile(props) {
     const [imgLoading, setImgLoading] = useState(false);
 
     useEffect(() => {
+        let mounted = true;
         if (!imgFetched && !imgLoading) {
             setImgLoading(true);
             fetch(url, {headers: authHeader()})
             .then(async res => {
-                if (res.status === 200) {
-                    setSrc(URL.createObjectURL(await res.blob()));
+                if (mounted) {
+                    if (res.status === 200) {
+                        setSrc(URL.createObjectURL(await res.blob()));
+                    }
+                    setImgLoading(false);
+                    setImgFetched(true);
                 }
-                setImgLoading(false);
-                setImgFetched(true);
             })
             .catch(err => {
                 console.log(err);
             });  
         }
+        return () => mounted = false;
     },[recipe_id, imgLoading, imgFetched, src, url])
 
     return (
@@ -45,9 +49,10 @@ function RecipeTile(props) {
                         }
                     </div>
                     <h2>
-                        <Link to={{pathname: '/recipe-card/' + recipe_id}}>
+                        {/* <Link to={{pathname: '/recipe-card/' + recipe_id}}>
                             {recipe_name}
-                        </Link>
+                        </Link> */}
+                        <p>{recipe_name}</p>
                     </h2>
                     Contributed by {contributor}<br />
                     Prep time {prep_time}<br />
