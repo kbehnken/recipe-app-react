@@ -7,21 +7,25 @@ function RecipeTile(props) {
     const { recipe_id, recipe_name, contributor, prep_time, cook_time } = props.recipe;
     const url=`${process.env.REACT_APP_API_PROTOCOL}${process.env.REACT_APP_API_SERVER}:${process.env.REACT_APP_API_PORT}/api/v1/recipes/photos/${recipe_id}`;
     const [src, setSrc] = useState('');
-    const [imgFetched, setImgFetched] = useState(false);
-    const [imgLoading, setImgLoading] = useState(false);
+    //const [imgFetched, setImgFetched] = useState(false);
+    //const [imgLoading, setImgLoading] = useState(false);
 
     useEffect(() => {
         let mounted = true;
+        let imgFetched = false;
+        let imgLoading = false;
         if (!imgFetched && !imgLoading) {
-            setImgLoading(true);
+            imgLoading = true;
             fetch(url, {headers: authHeader()})
             .then(async res => {
                 if (mounted) {
                     if (res.status === 200) {
                         setSrc(URL.createObjectURL(await res.blob()));
                     }
-                    setImgLoading(false);
-                    setImgFetched(true);
+                    //setImgLoading(false);
+                    //setImgFetched(true);
+                    imgLoading = false
+                    imgFetched = true
                 }
             })
             .catch(err => {
@@ -29,7 +33,7 @@ function RecipeTile(props) {
             });  
         }
         return () => mounted = false;
-    },[recipe_id, imgLoading, imgFetched, src, url])
+    },[recipe_id, setSrc, url])
 
     return (
         <div>
