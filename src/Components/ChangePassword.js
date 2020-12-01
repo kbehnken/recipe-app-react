@@ -6,7 +6,6 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import 'react-notifications/lib/notifications.css';
 import { authHeader } from '../Helpers/authHeader'
 import '../Styles/main.css';
 

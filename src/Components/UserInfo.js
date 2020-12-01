@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import 'react-notifications/lib/notifications.css';
 import TextField from '@material-ui/core/TextField';
 import { getUserInfo } from '../Helpers/getUserInfo';
 import { authHeader } from '../Helpers/authHeader'
