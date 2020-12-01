@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { CgAddR, CgRemoveR } from 'react-icons/cg';
-import { NotificationManager } from 'react-notifications';
 import { addRecipeData, updateActiveRecipeData, clearRecipeData, addIngredientData, removeIngredientData } from '../Redux/Actions/recipeActions';
 import TextField from '@material-ui/core/TextField';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Nav from './Nav';
 import '../Styles/main.css';
 
@@ -28,19 +29,19 @@ function CreateRecipeForm(props) {
         if (recipe.recipe_name && recipe.prep_time && recipe.cook_time) {
             dispatch(addRecipeData())
             .then(() => {
-                NotificationManager.success(`You successfully added ${recipe.recipe_name} to the recipe box.`);
+                toast.success(`You successfully added ${recipe.recipe_name} to the recipe box.`);
                 dispatch(clearRecipeData());
                 history.push('/');
             })
             .catch(err => {
                 if (err && err.response.status === 415) {
-                    NotificationManager.error('Files must be in .jpg, .png, or .gif format');
+                    toast.error('Files must be in .jpg, .png, or .gif format');
                 } else {
-                NotificationManager.error('There was an error submitting your recipe.')
+                toast.error('There was an error submitting your recipe.')
                 }
             })
         } else {
-            NotificationManager.error('Please complete all required fields.')
+            toast.error('Please complete all required fields.')
         }
     }
     const mappedIngredients = recipe.ingredients.map((item, index) => {
@@ -70,7 +71,10 @@ function CreateRecipeForm(props) {
                         <TextField {...(!recipe.recipe_name && {error: true, helperText: 'Recipe name cannot be blank.' })} required name='recipe_name' variant='outlined' label='Recipe Name' autoFocus={true} style={{width: '100%'}} onChange={e => props.updateActiveRecipeData(e.target.name, e.target.value)} value={recipe.recipe_name} />
                     </div>
                     <div>
-                        <label>Upload Photo:</label>
+                        <label>Upload Photo:</label><br />
+                        <span className='fine-print'>
+                            (.jpg, .gif, .png)<br />
+                        </span>
                     </div>
                     <div>
                         <input id='imageFile' type='file' name='imageFile' onChange={e => props.updateActiveRecipeData(e.target.name, e.target.files[0])} /><br /><br />

@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
-import { NotificationContainer, NotificationManager } from 'react-notifications';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import 'react-notifications/lib/notifications.css';
@@ -23,10 +24,10 @@ function ChangePassword(props) {
             .then(() => {
                 setNewPassword('');
                 setConfirmPassword('');
-                return NotificationManager.success('You successfully changed your password');
+                return toast.success('You successfully changed your password');
             })
             .catch(err => {
-                NotificationManager.error('Password reset failed.')
+                toast.error('Password reset failed.')
             })
         }
     };
@@ -43,7 +44,6 @@ function ChangePassword(props) {
     return (
         <div>
             <div className='form-container'>
-                <NotificationContainer />
                 {showOldPassword === false ?
                     (
                         <div>
@@ -129,8 +129,8 @@ function ChangePassword(props) {
                 }
                 <div>
                     <button type='button' onClick={history.goBack}>
-                            Cancel
-                        </button>
+                        Cancel
+                    </button>
                     <button type='button' onClick={() => changePassword()}>
                         Save
                     </button>

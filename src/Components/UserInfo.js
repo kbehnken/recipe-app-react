@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import { NotificationContainer, NotificationManager } from 'react-notifications';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import 'react-notifications/lib/notifications.css';
 import TextField from '@material-ui/core/TextField';
 import { getUserInfo } from '../Helpers/getUserInfo';
@@ -19,16 +20,15 @@ function UserInfo(props) {
         .then((res) => {
             console.log(res);
             localStorage.setItem('accessToken', JSON.stringify(res.data.accessToken));
-            return NotificationManager.success('You successfully updated your personal information');
+            return toast.success('You successfully updated your personal information');
         })
         .catch(err => {
-            NotificationManager.error('The system encountered an error. Update failed.')
+            toast.error('The system encountered an error. Update failed.')
         })
     }
     
     return (
         <div className='form-container'>
-            <NotificationContainer />
             <div>
                 <TextField required name='first_name' variant='outlined' label='First Name' onChange={e => setFirstName(e.target.value)} value={first_name} />
             </div>

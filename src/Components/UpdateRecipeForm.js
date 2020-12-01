@@ -3,8 +3,10 @@ import { useHistory, useParams } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import { CgAddR, CgRemoveR } from 'react-icons/cg';
 import Loader from 'react-loader-spinner';
-import { NotificationManager } from 'react-notifications';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import TextField from '@material-ui/core/TextField';
+// import Button from '@material-ui/core/Button';
 import { requestRecipeDataById, updateStoredRecipeData, updateActiveRecipeData, clearRecipeData, addIngredientData, removeIngredientData } from '../Redux/Actions/recipeActions';
 import { authHeader } from '../Helpers/authHeader';
 import Nav from './Nav';
@@ -34,14 +36,14 @@ function UpdateRecipeForm(props) {
         if (recipe.recipe_name && recipe.prep_time && recipe.cook_time) {
             dispatch(updateStoredRecipeData())
             .then(() => {
-                NotificationManager.success(`You successfully updated your ${recipe.recipe_name} recipe.`);
+                toast.success(`You successfully updated your ${recipe.recipe_name} recipe.`);
                 history.goBack();
             })
             .catch(err => {
-                NotificationManager.error('There was an error updating your recipe.')
+                toast.error('There was an error updating your recipe.')
             })
         } else {
-            NotificationManager.error('Please complete all required fields.')
+            toast.error('Please complete all required fields.')
         }
     }
 
@@ -107,6 +109,9 @@ function UpdateRecipeForm(props) {
                                     <label>Upload Photo:</label>
                                 </div>
                                 <div>
+                                    {/* <Button type='file' name='imageFile' variant='contained' onChange={e => updateActiveRecipeData(e.target.name, e.target.files[0])}>
+                                        Choose File
+                                    </Button> */}
                                     <input type='file' name='imageFile' onChange={e => updateActiveRecipeData(e.target.name, e.target.files[0])} /><br /><br />
                                     {recipe.imageFile && <ImageThumbnail image={recipe.imageFile} />}<br /><br />
                                 </div>

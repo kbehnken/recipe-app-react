@@ -1,7 +1,8 @@
 import { authConsts } from '../Consts/authConsts';
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
-import { NotificationManager } from 'react-notifications';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // TODO: Needs expired token and 401 validation
 export function login(email, password) {
@@ -14,9 +15,9 @@ export function login(email, password) {
         })
         .catch(err => {
             if (err && err.response.status === 401) {
-                NotificationManager.error('Your login attempt failed. Confirm your email address and password are correct and try again.');
+                toast.error('Your login attempt failed. Confirm your email address and password are correct and try again.');
             } else {
-            NotificationManager.error('Login failed.')
+            toast.error('Login failed.')
             }
         })
     };
