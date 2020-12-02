@@ -34,7 +34,7 @@ function Login(props) {
                             <TextField required type='password' name='password' variant='outlined' label='Password' value={password} onChange={e => setPassword(e.target.value)} style={{width: '100%'}} autoComplete='none' InputProps={{
                                 endAdornment:
                                 <InputAdornment position='end'>
-                                    <BsEyeSlashFill size={20} onClick={togglePasswordVisibility} style={{cursor: 'pointer', color: '#00b300'}} />
+                                    <BsEyeSlashFill title='Click to show password' size={20} onClick={togglePasswordVisibility} style={{cursor: 'pointer', color: '#00b300'}} />
                                 </InputAdornment>
                             }} />
                         </div>
@@ -44,7 +44,7 @@ function Login(props) {
                             <TextField required name='password' variant='outlined' label='Password' value={password} onChange={e => setPassword(e.target.value)} style={{width: '100%'}} autoComplete='none' InputProps={{
                                 endAdornment:
                                 <InputAdornment position='end'>
-                                    <BsEyeFill size={20} onClick={togglePasswordVisibility} style={{cursor: 'pointer', color: '#00b300'}} />
+                                    <BsEyeFill title='Click to hide password' size={20} onClick={togglePasswordVisibility} style={{cursor: 'pointer', color: '#00b300'}} />
                                 </InputAdornment>
                             }} />
                         </div>
