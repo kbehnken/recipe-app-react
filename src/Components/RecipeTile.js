@@ -7,8 +7,6 @@ function RecipeTile(props) {
     const { recipe_id, recipe_name, contributor, prep_time, cook_time } = props.recipe;
     const url=`${process.env.REACT_APP_API_PROTOCOL}${process.env.REACT_APP_API_SERVER}:${process.env.REACT_APP_API_PORT}/api/v1/recipes/photos/${recipe_id}`;
     const [src, setSrc] = useState('');
-    //const [imgFetched, setImgFetched] = useState(false);
-    //const [imgLoading, setImgLoading] = useState(false);
 
     useEffect(() => {
         let mounted = true;
@@ -22,8 +20,6 @@ function RecipeTile(props) {
                     if (res.status === 200) {
                         setSrc(URL.createObjectURL(await res.blob()));
                     }
-                    //setImgLoading(false);
-                    //setImgFetched(true);
                     imgLoading = false
                     imgFetched = true
                 }
@@ -52,15 +48,12 @@ function RecipeTile(props) {
                             )
                         }
                     </div>
-                    <h2>
-                        {/* <Link to={{pathname: '/recipe-card/' + recipe_id}}>
-                            {recipe_name}
-                        </Link> */}
-                        <p>{recipe_name}</p>
+                    <h2 id='recipe-name'>
+                        {recipe_name}
                     </h2>
-                    Contributed by {contributor}<br />
                     Prep time {prep_time}<br />
                     Cook time {cook_time}<br />
+                    Contributed by {contributor}<br />
                 </div>
             </Link>
         </div>
