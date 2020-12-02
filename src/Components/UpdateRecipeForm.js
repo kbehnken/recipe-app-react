@@ -16,10 +16,10 @@ function UpdateRecipeForm(props) {
     const dispatch = useDispatch();
     const history = useHistory();
     const recipe_id = parseInt(useParams().recipe_id);
-    const url=`http://localhost:3000/api/v1/recipes/photos/${recipe_id}`;
+    const url=`${process.env.REACT_APP_API_PROTOCOL}${process.env.REACT_APP_API_SERVER}:${process.env.REACT_APP_API_PORT}/api/v1/recipes/photos/${recipe_id}`;
+    const [src, setSrc] = useState('');
     const [quantity, setQuantity] = useState('');
     const [ingredient_name, setIngredientName] = useState('');
-    const [src, setSrc] = useState('');
     const [imgLoading, setImgLoading] = useState(false);
     const { recipe, loading, updateActiveRecipeData } = props;
     const ImageThumbnail = ({image}) => {
@@ -52,12 +52,10 @@ function UpdateRecipeForm(props) {
         if (src === '' && !imgLoading) {
             setImgLoading(true);
             fetch(url, {headers: authHeader()})
-            .then(res => {
-                return res.blob();
-            })
-            .then(blob => {
-                setSrc(URL.createObjectURL(blob));
-                setImgLoading(false);
+            .then(async res => {
+                if (res.status === 200) {
+                    setSrc(URL.createObjectURL(await res.blob()));
+                    setImgLoading(false);}
             })
             .catch(err => {
                 console.log(err);
@@ -113,7 +111,21 @@ function UpdateRecipeForm(props) {
                                         Choose File
                                     </Button> */}
                                     <input type='file' name='imageFile' onChange={e => updateActiveRecipeData(e.target.name, e.target.files[0])} /><br /><br />
-                                    {recipe.imageFile && <ImageThumbnail image={recipe.imageFile} />}<br /><br />
+                                    {recipe.imageFile ? 
+                                        (
+                                            <ImageThumbnail image={recipe.imageFile} />
+                                        ) :
+                                        (
+                                            src ?
+                                                <div>
+                                                    <img src={src} alt={recipe.recipe_name} style={{borderRadius: '5px', width: '150px'}} />
+                                                </div>
+                                            :
+                                                <div>
+
+                                                </div>
+                                        )
+                                    }
                                 </div>
                                 <div>
                                     <TextField {...(!recipe.prep_time && {error: true, helperText: 'Prep time cannot be blank.' })} required name='prep_time' variant='outlined' label='Prep Time' style={{marginRight: '10px'}} onChange={e => props.updateActiveRecipeData(e.target.name, e.target.value)} value={recipe.prep_time} />
