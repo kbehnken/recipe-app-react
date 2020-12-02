@@ -48,6 +48,10 @@ menu div a:hover {
   overflow: hidden;
 }
 
+.user-icon:hover, .hamburger-icon:hover {
+  color: #009800;
+}
+
 .hamburger-icon {
   display: none;
   margin: 25px 0px 25px 0px;
