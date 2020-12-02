@@ -4,6 +4,14 @@ body, button {
     background-color: #e8e8e8;
 }
 
+#recipe-name {
+    color: #00b300;
+}
+
+#recipe-name:hover {
+    color: #009800;
+}
+
 hr {
     background-color: #ccc;
     height: 1px;
@@ -51,7 +59,7 @@ img {
     padding: 25px;
 }
 
-#photo-info-container .flex-around {
+#photo-info-container, .flex-around {
     display: block;
 }
 
