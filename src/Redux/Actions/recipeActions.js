@@ -237,7 +237,6 @@ function requestFavoriteRecipeDataByUserIdSuccess(data) {
 export function addFavoriteRecipeData() {
     return function (dispatch, getState) {
         const { recipe_id } = getState().recipe.recipe
-        console.log(getState().recipe)
         dispatch(addFavoriteRecipeDataPending());
         axios.post(`${process.env.REACT_APP_API_PROTOCOL}${process.env.REACT_APP_API_SERVER}:${process.env.REACT_APP_API_PORT}/api/v1/recipes/favorites`, {
             user_id: getUserInfo().user_id,
