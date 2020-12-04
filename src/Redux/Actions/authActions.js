@@ -1,10 +1,9 @@
 import { authConsts } from '../Consts/authConsts';
-import jwt_decode from 'jwt-decode';
+// import jwt_decode from 'jwt-decode';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// TODO: Needs expired token and 401 validation
 export function login(email, password) {
     return (dispatch) => {
         dispatch(loginPending())
@@ -35,26 +34,26 @@ export function loginSuccess() {
     };
 }
 
-export function refreshLogin() {
-    return (dispatch) => {
-        let accessToken = '';
-        let tokenExp = '';
+// export function refreshLogin() {
+//     return (dispatch) => {
+//         let accessToken = '';
+//         let tokenExp = '';
 
-        if ('accessToken' in localStorage) {
-            accessToken = localStorage.getItem('accessToken');
-            tokenExp = jwt_decode(accessToken).exp;
-        } else {
-            console.log('no token');
-            return false;
-        }
-        if (tokenExp * 1000 <= Date.now()) {
-            console.log('token expired');
-           return false;
-        }
-        dispatch(loginSuccess());
-        return true;
-    }
-}
+//         if ('accessToken' in localStorage) {
+//             accessToken = localStorage.getItem('accessToken');
+//             tokenExp = jwt_decode(accessToken).exp;
+//         } else {
+//             console.log('no token');
+//             return false;
+//         }
+//         if (tokenExp * 1000 <= Date.now()) {
+//             console.log('token expired');
+//            return false;
+//         }
+//         dispatch(loginSuccess());
+//         return true;
+//     }
+// }
 
 export function logout() {
     localStorage.clear();
