@@ -24,7 +24,7 @@ export default function Nav() {
                     </Link>
                 </div>
                 <div>
-                    <Link to='/add-recipe'>
+                    <Link to='/add-recipe' activeStyle={{ backgrounColor: 'red' }}>
                         Add a New Recipe
                     </Link>
                 </div>
@@ -39,8 +39,8 @@ export default function Nav() {
                         (
                             <menu>
                                 <div>
-                                    <Link to='/profile'>
-                                        Manage User Profile
+                                    <Link to='/change-password'>
+                                        Change Password
                                     </Link>
                                 </div>
                                 <div>
@@ -83,8 +83,8 @@ export default function Nav() {
                                     </Link>
                                 </div>
                                 <div>
-                                    <Link to='/profile'>
-                                        Manage User Profile
+                                    <Link to='/change-password'>
+                                        Change Password
                                     </Link>
                                 </div>
                                 <div>

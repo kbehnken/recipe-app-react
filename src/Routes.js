@@ -1,14 +1,14 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { PrivateRoute } from './Components/PrivateRoutes.js';
+import { PrivateRoute } from './Components/PrivateRoutes';
 import Dashboard from './Components/Dashboard';
 import AllRecipes from './Components/AllRecipes'
 import CreateRecipeForm from './Components/CreateRecipeForm';
 import UpdateRecipeForm from './Components/UpdateRecipeForm'
 import MyRecipes from './Components/MyRecipes'
 import RecipeCard from './Components/RecipeCard';
-import SearchResults from './Components/SearchResults.js';
-import Profile from './Components/Profile';
+import SearchResults from './Components/SearchResults';
+import ChangePassword from './Components/ChangePassword';
 import Login from './Components/Login';
 import Logout from './Components/Logout';
 
@@ -21,7 +21,7 @@ export default (
         <PrivateRoute path='/update-recipes/:recipe_id' component={UpdateRecipeForm} />
         <PrivateRoute path='/recipe-card/:recipe_id' component={RecipeCard} />
         <PrivateRoute path='/search-results' component={SearchResults} />
-        <PrivateRoute path='/profile' component={Profile} />
+        <PrivateRoute path='/change-password' component={ChangePassword} />
         <Route path='/login' component={Login} />
         <Route path='/logout' component={Logout} />
     </Switch>
