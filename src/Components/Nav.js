@@ -24,7 +24,7 @@ export default function Nav() {
                     </Link>
                 </div>
                 <div>
-                    <Link to='/add-recipe' activeStyle={{ backgrounColor: 'red' }}>
+                    <Link to='/add-recipe'>
                         Add a New Recipe
                     </Link>
                 </div>
