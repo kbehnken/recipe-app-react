@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { authHeader } from '../Helpers/authHeader'
+import Nav from './Nav';
 import '../Styles/main.css';
 
 function ChangePassword(props) {
@@ -45,115 +46,122 @@ function ChangePassword(props) {
 
     return (
         <div>
-            <div className='form-container'>
-                <div className='float-left' style={{width: '30%'}}>
-                    {showOldPassword === false ?
-                        (
-                            <div>
-                                <TextField required type='password' name='oldPassword' variant='outlined' label='Old Password' onChange={e => setOldPassword(e.target.value)} value={oldPassword} autoComplete='none' InputProps={{
-                                    endAdornment:
-                                    <InputAdornment position='end'>
-                                        <BsEyeSlashFill size={20} onClick={toggleOldPasswordVisibility} style={{cursor: 'pointer', color: '#00b300'}} />
-                                    </InputAdornment>
-                                }} />
-                            </div>
-                        ):
-                        (
-                            <div>
-                                <TextField required name='oldPassword' variant='outlined' label='Old Password' onChange={e => setOldPassword(e.target.value)} value={oldPassword} autoComplete='none' InputProps={{
-                                    endAdornment:
-                                    <InputAdornment position='end'>
-                                        <BsEyeFill size={20} onClick={toggleOldPasswordVisibility} style={{cursor: 'pointer', color: '#00b300'}} />
-                                    </InputAdornment>
-                                }} />
-                            </div>
-                        )
-                    }
-                    {newPassword !== confirmPassword ?
-                        (
-                            <div style={{color: 'red'}}>
-                                New Password and Confirm Password must match
-                            </div>
-                        ) :
-                        (
-                            null
-                        )
-                    }
-                    {showNewPassword === false ?
-                        (
-                            <div>
-                                <div>
-                                    <TextField required type='password' name='newPassword' variant='outlined' label='New Password' onChange={e => setNewPassword(e.target.value)} value={newPassword} autoComplete='none' InputProps={{
-                                        endAdornment:
-                                        <InputAdornment position='end'>
-                                            <BsEyeSlashFill size={20} onClick={toggleNewPasswordVisibility} style={{cursor: 'pointer', color: '#00b300'}} />
-                                        </InputAdornment>
-                                    }} />
-                                </div>
-                            </div>
-                        ):
-                        (
-                            <div>
-                                <div>
-                                    <TextField required name='newPassword' variant='outlined' label='New Password' onChange={e => setNewPassword(e.target.value)} value={newPassword} autoComplete='none' InputProps={{
-                                        endAdornment:
-                                        <InputAdornment position='end'>
-                                            <BsEyeFill size={20} onClick={toggleNewPasswordVisibility} style={{cursor: 'pointer', color: '#00b300'}} />
-                                        </InputAdornment>
-                                    }} />
-                                </div>
-                            </div>
-                        )
-                    }
-                    {showConfirmPassword === false ?
-                        (
-                            <div>
-                                <div>
-                                    <TextField required type='password' name='confirmPassword' variant='outlined' label='Confirm Password' onChange={e => setConfirmPassword(e.target.value)} value={confirmPassword} autoComplete='none'InputProps={{
-                                        endAdornment:
-                                        <InputAdornment position='end'>
-                                            <BsEyeSlashFill size={20} onClick={toggleConfirmPasswordVisibility} style={{cursor: 'pointer', color: '#00b300'}} />
-                                        </InputAdornment>
-                                    }} />
-                                </div>
-                            </div>
-                        ):
-                        (
-                            <div>
-                                <div>
-                                    <TextField required name='confirmPassword' variant='outlined' label='Confirm Password' onChange={e => setConfirmPassword(e.target.value)} value={confirmPassword} autoComplete='none' InputProps={{
-                                        endAdornment:
-                                        <InputAdornment position='end'>
-                                            <BsEyeFill size={20} onClick={toggleConfirmPasswordVisibility} style={{cursor: 'pointer', color: '#00b300'}} />
-                                        </InputAdornment>}} />
-                                </div>
-                            </div>
-                        )
-                    }
-                </div>
-                <div style={{textAlign: 'justify'}}>
-                    <ul>
-                        <li>
-                            Your recipe box password must be a minimum of 12 characters.<br /><br />
-                        </li>
-                        <li>
-                            To help ensure maximum security, we recommend you choose a password you have not used before.<br /><br />
-                        </li>
-                        <li>
-                            Likewise, you should avoid using important dates, the names of pets or children, or your social security number as your password. These can be easily guessed by would be hackers.<br /><br />
-                        </li>
-                    </ul>
-                </div>
-                <div style={{clear: 'left'}}>
-                <button type='button' onClick={history.goBack}>
-                    Cancel
-                </button>
-                <button type='button' onClick={() => changePassword()}>
-                    Save
-                </button>
+            <div>
+                <Nav />
             </div>
+            <div className='outer-content-container'>
+                <p style={{textAlign: 'center'}}>
+                    Fill out the form below and click the Save button to change your recipe box password.<br /><br />
+                </p>
+                <div className='form-container'>
+                    <div className='float-left' style={{width: '30%'}}>
+                        {showOldPassword === false ?
+                            (
+                                <div>
+                                    <TextField required type='password' name='oldPassword' variant='outlined' label='Old Password' onChange={e => setOldPassword(e.target.value)} value={oldPassword} autoComplete='none' InputProps={{
+                                        endAdornment:
+                                        <InputAdornment position='end'>
+                                            <BsEyeSlashFill size={20} onClick={toggleOldPasswordVisibility} style={{cursor: 'pointer', color: '#00b300'}} />
+                                        </InputAdornment>
+                                    }} />
+                                </div>
+                            ):
+                            (
+                                <div>
+                                    <TextField required name='oldPassword' variant='outlined' label='Old Password' onChange={e => setOldPassword(e.target.value)} value={oldPassword} autoComplete='none' InputProps={{
+                                        endAdornment:
+                                        <InputAdornment position='end'>
+                                            <BsEyeFill size={20} onClick={toggleOldPasswordVisibility} style={{cursor: 'pointer', color: '#00b300'}} />
+                                        </InputAdornment>
+                                    }} />
+                                </div>
+                            )
+                        }
+                        {newPassword !== confirmPassword ?
+                            (
+                                <div style={{color: 'red'}}>
+                                    New Password and Confirm Password must match
+                                </div>
+                            ) :
+                            (
+                                null
+                            )
+                        }
+                        {showNewPassword === false ?
+                            (
+                                <div>
+                                    <div>
+                                        <TextField required type='password' name='newPassword' variant='outlined' label='New Password' onChange={e => setNewPassword(e.target.value)} value={newPassword} autoComplete='none' InputProps={{
+                                            endAdornment:
+                                            <InputAdornment position='end'>
+                                                <BsEyeSlashFill size={20} onClick={toggleNewPasswordVisibility} style={{cursor: 'pointer', color: '#00b300'}} />
+                                            </InputAdornment>
+                                        }} />
+                                    </div>
+                                </div>
+                            ):
+                            (
+                                <div>
+                                    <div>
+                                        <TextField required name='newPassword' variant='outlined' label='New Password' onChange={e => setNewPassword(e.target.value)} value={newPassword} autoComplete='none' InputProps={{
+                                            endAdornment:
+                                            <InputAdornment position='end'>
+                                                <BsEyeFill size={20} onClick={toggleNewPasswordVisibility} style={{cursor: 'pointer', color: '#00b300'}} />
+                                            </InputAdornment>
+                                        }} />
+                                    </div>
+                                </div>
+                            )
+                        }
+                        {showConfirmPassword === false ?
+                            (
+                                <div>
+                                    <div>
+                                        <TextField required type='password' name='confirmPassword' variant='outlined' label='Confirm Password' onChange={e => setConfirmPassword(e.target.value)} value={confirmPassword} autoComplete='none'InputProps={{
+                                            endAdornment:
+                                            <InputAdornment position='end'>
+                                                <BsEyeSlashFill size={20} onClick={toggleConfirmPasswordVisibility} style={{cursor: 'pointer', color: '#00b300'}} />
+                                            </InputAdornment>
+                                        }} />
+                                    </div>
+                                </div>
+                            ):
+                            (
+                                <div>
+                                    <div>
+                                        <TextField required name='confirmPassword' variant='outlined' label='Confirm Password' onChange={e => setConfirmPassword(e.target.value)} value={confirmPassword} autoComplete='none' InputProps={{
+                                            endAdornment:
+                                            <InputAdornment position='end'>
+                                                <BsEyeFill size={20} onClick={toggleConfirmPasswordVisibility} style={{cursor: 'pointer', color: '#00b300'}} />
+                                            </InputAdornment>}} />
+                                    </div>
+                                </div>
+                            )
+                        }
+                    </div>
+                    <div style={{textAlign: 'justify'}}>
+                        <ul>
+                            <li>
+                                Your recipe box password must be a minimum of 12 characters.<br /><br />
+                            </li>
+                            <li>
+                                To help ensure maximum security, we recommend you choose a password you have not used before.<br /><br />
+                            </li>
+                            <li>
+                                Likewise, you should avoid using important dates, the names of pets or children, or your social security number as your password. These can be easily guessed by would be hackers.<br /><br />
+                            </li>
+                        </ul>
+                    </div>
+                    <div style={{clear: 'left'}}>
+                        <button type='button' onClick={history.goBack}>
+                            Cancel
+                        </button>
+                        <button type='button' onClick={() => changePassword()}>
+                            Save
+                        </button>
+                    </div>
+                </div>
             </div>
-            
         </div>
     );
 }
