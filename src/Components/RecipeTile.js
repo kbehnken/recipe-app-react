@@ -7,6 +7,12 @@ function RecipeTile(props) {
     const { recipe_id, recipe_name, contributor, prep_time, cook_time } = props.recipe;
     const url=`${process.env.REACT_APP_API_PROTOCOL}${process.env.REACT_APP_API_SERVER}:${process.env.REACT_APP_API_PORT}/api/v1/recipes/photos/${recipe_id}`;
     const [src, setSrc] = useState('');
+    const truncateRecipeName = (recipe_name => {
+        if (recipe_name.length <= 24) {
+            return recipe_name;
+        }
+        return recipe_name.slice(0, 24) + '...';
+    })
 
     useEffect(() => {
         let mounted = true;
@@ -48,8 +54,8 @@ function RecipeTile(props) {
                             )
                         }
                     </div>
-                    <h2 id='recipe-name'>
-                        {recipe_name}
+                    <h2 id='recipe-name' title={recipe_name}>
+                        {truncateRecipeName(recipe_name)}
                     </h2>
                     Prep time {prep_time}<br />
                     Cook time {cook_time}<br />
