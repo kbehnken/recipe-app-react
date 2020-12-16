@@ -59,8 +59,19 @@ img {
     color: #009800;
 }
 
-#photo-info-container, .flex-around {
-    display: block;
+#no-photo-container {
+    font-size: 18pt;
+    font-weight: 700;
+    color: #9a9a9a;
+    background-color: #dddddd;
+    height: 225px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#camera {
+    color: #9a9a9a;
+    padding-top: 25px;
 }
 
 .outer-content-container {
@@ -68,7 +79,7 @@ img {
     min-height: calc(100vh - 75px);
     background-color: #fff;
     margin: auto;
-    padding: 50px 25px 25px;
+    padding: 0px 25px 25px;
 }
 
 .form-container div {
