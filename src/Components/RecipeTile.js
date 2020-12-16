@@ -8,10 +8,10 @@ function RecipeTile(props) {
     const url=`${process.env.REACT_APP_API_PROTOCOL}${process.env.REACT_APP_API_SERVER}:${process.env.REACT_APP_API_PORT}/api/v1/recipes/photos/${recipe_id}`;
     const [src, setSrc] = useState('');
     const truncateRecipeName = (recipe_name => {
-        if (recipe_name.length <= 24) {
+        if (recipe_name.length <= 20) {
             return recipe_name;
         }
-        return recipe_name.slice(0, 24) + '...';
+        return recipe_name.slice(0, 20) + '...';
     })
 
     useEffect(() => {
@@ -48,7 +48,7 @@ function RecipeTile(props) {
                             ) :
                             (
                                 <div style={{height: '200px', backgroundColor: '#dddddd', color: '#9a9a9a', borderRadius: '5px', textAlign: 'center', padding: '10px', fontWeight: '700', fontSize: '18pt'}}>
-                                    <FaCamera title='No photo available' size={150} style={{color: '#9a9a9a'}} /><br /><br/>
+                                    <FaCamera title='No photo available' size={125} style={{color: '#9a9a9a'}} /><br /><br/>
                                     NO PHOTO AVAILABLE
                                 </div>
                             )
