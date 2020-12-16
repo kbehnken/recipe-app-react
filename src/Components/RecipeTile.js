@@ -47,8 +47,8 @@ function RecipeTile(props) {
                                 <img src={src} alt={recipe_name} style={{height: '225px', maxWidth: '100%'}} />
                             ) :
                             (
-                                <div style={{height: '200px', backgroundColor: '#dddddd', color: '#9a9a9a', borderRadius: '5px', textAlign: 'center', padding: '10px', fontWeight: '700', fontSize: '18pt'}}>
-                                    <FaCamera title='No photo available' size={125} style={{color: '#9a9a9a'}} /><br /><br/>
+                                <div style={{height: '225px', backgroundColor: '#dddddd', color: '#9a9a9a', borderRadius: '5px', textAlign: 'center', fontWeight: '700', fontSize: '18pt'}}>
+                                    <FaCamera title='No photo available' size={125} style={{color: '#9a9a9a', paddingTop: '25px'}} /><br />
                                     NO PHOTO AVAILABLE
                                 </div>
                             )
