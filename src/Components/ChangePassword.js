@@ -8,7 +8,6 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { authHeader } from '../Helpers/authHeader'
 import Nav from './Nav';
-import '../Styles/main.css';
 
 function ChangePassword(props) {
     const history = useHistory();
@@ -46,9 +45,7 @@ function ChangePassword(props) {
 
     return (
         <div>
-            <div>
-                <Nav />
-            </div>
+            <Nav />
             <div className='outer-content-container'>
                 <p style={{textAlign: 'center'}}>
                     Fill out the form below and click the Save button to change your recipe box password.<br /><br />

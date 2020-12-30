@@ -9,7 +9,6 @@ import { requestRecipeDataById, addFavoriteRecipeData, removeFavoriteRecipeData,
 import { authHeader } from '../Helpers/authHeader';
 import { getUserInfo } from '../Helpers/getUserInfo';
 import Nav from './Nav';
-import '../Styles/main.css';
 
 function RecipeCard(props) {
     const dispatch = useDispatch();
@@ -55,9 +54,7 @@ function RecipeCard(props) {
     
     return (
         <div>
-            <div>
-                <Nav />
-            </div>
+            <Nav />
             <div className='outer-content-container' key={recipe.recipe_id}>
                 {loading ?
                     (

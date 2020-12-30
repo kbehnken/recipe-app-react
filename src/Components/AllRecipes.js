@@ -5,7 +5,6 @@ import { requestRecipeData } from '../Redux/Actions/recipeActions';
 import Search from './Search'
 import RecipeTile from './RecipeTile';
 import Nav from './Nav';
-import '../Styles/main.css';
 
 function AllRecipes(props) {
     const dispatch = useDispatch();
@@ -21,9 +20,7 @@ function AllRecipes(props) {
     })
     return(
         <div>
-            <div>
-                <Nav />
-            </div>
+            <Nav />
             <div className='outer-content-container'>
                 {props.loading ?
                     (

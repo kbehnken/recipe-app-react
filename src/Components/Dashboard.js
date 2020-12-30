@@ -8,7 +8,7 @@ import { getUserInfo } from '../Helpers/getUserInfo';
 import Search from './Search'
 import RecipeTile from './RecipeTile';
 import Nav from './Nav';
-import '../Styles/main.css';
+
 
 function Dashboard(props) {
     const dispatch = useDispatch();
@@ -33,9 +33,7 @@ function Dashboard(props) {
 
     return(
         <div>
-            <div>
-                <Nav />
-            </div>
+            <Nav />
             <div className='outer-content-container'>
                 {props.loading ?
                     (
