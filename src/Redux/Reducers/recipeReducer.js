@@ -73,8 +73,7 @@ export default function reducer(previousState = initialState, action) {
         case recipeConsts.ADD_RECIPE_DATA_SUCCESS:
             return ({
                 ...previousState,
-                loading: false,
-                // recipes: action.payload.data
+                loading: false
             });
         case recipeConsts.UPDATE_STORED_RECIPE_DATA + '_PENDING':
             return ({
