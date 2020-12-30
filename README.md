@@ -8,7 +8,7 @@
 
 1. Perform the installation steps at https://github.com/kbehnken/recipe-api. Make a note of the protocol, host, and port you choose.
 2. Clone this repository with: `git clone https://github.com/kbehnken/recipe-app`.
-3. Navigate to the root of project directory. Type `npm i`.
+3. Navigate to the root of the project directory. Type `npm i`.
 4. Create a .env file in the root of the project directory, and add the settings you chose in step 1:
 ```
 REACT_APP_API_PROTOCOL = http://
