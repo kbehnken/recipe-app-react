@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { PrivateRoute } from './Components/PrivateRoutes';
+import PrivateRoute from './Components/PrivateRoutes';
 import Dashboard from './Components/Dashboard';
 import AllRecipes from './Components/AllRecipes'
 import CreateRecipeForm from './Components/CreateRecipeForm';

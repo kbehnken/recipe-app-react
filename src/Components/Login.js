@@ -1,24 +1,42 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { login } from '../Redux/Actions/authActions';
-import { Redirect } from 'react-router-dom';
+import axios from 'axios';
+import { useHistory, Redirect } from 'react-router-dom';
 import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { isLoggedIn } from '../Helpers/isLoggedIn';
 import '../Styles/login.css';
-import '../Styles/main.css';
 
 function Login(props) {
+    const history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const togglePasswordVisibility = () => {
         return setShowPassword(!showPassword);
     };
-    if (props.loggedIn === true) {
+    if (isLoggedIn()) {
         return (
             <Redirect to='/' />
         )
+    }
+
+    const handleLogin = (email, password) => {
+        axios.post(`${process.env.REACT_APP_API_PROTOCOL}${process.env.REACT_APP_API_SERVER}:${process.env.REACT_APP_API_PORT}/api/v1/login`, { email, password })
+        .then(res => {
+            localStorage.setItem('accessToken', JSON.stringify(res.data.accessToken));
+            history.push('/');
+        })
+        .catch(err => {
+            console.log(err)
+            if (err && err.response.status === 401) {
+                toast.error('Your login attempt failed. Confirm your email address and password are correct and try again.');
+            } else {
+                toast.error('Login failed.')
+            }
+        })
     }
 
     return (
@@ -51,7 +69,7 @@ function Login(props) {
                     )
                 }
                 <div>
-                    <button className='login-button' onClick={() => props.dispatch(login(email, password))}>
+                    <button className='login-button' onClick={() => {handleLogin(email, password)}}>
                         Login
                     </button>
                 </div>
@@ -60,10 +78,4 @@ function Login(props) {
     )
 }
 
-function mapStateToProps(reduxState) {
-    return {
-        loggedIn: reduxState.auth.loggedIn
-    }
-}
-
-export default connect(mapStateToProps)(Login);
+export default Login;

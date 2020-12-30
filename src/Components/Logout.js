@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { logout } from '../Redux/Actions/authActions';
 import { Redirect } from 'react-router-dom';
 
 function Logout(props) {
     useEffect(() => {
-        props.dispatch(logout());
+        localStorage.clear();
     })
 
     return (
@@ -13,4 +11,4 @@ function Logout(props) {
     );
 }
 
-export default connect()(Logout);
+export default Logout;
