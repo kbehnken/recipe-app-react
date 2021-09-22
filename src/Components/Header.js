@@ -1,15 +1,11 @@
 import React from 'react';
+import Nav from './Nav';
 
-function Header(props) {
-    return(
-        <div className='App-header'>
-            <div>
-                Favorites
-            </div>
-            <div>
-                + Recipe
-            </div>
-        </div>
+function Header() {
+    return (
+        <header>
+            <Nav />
+        </header>
     );
 }
 
