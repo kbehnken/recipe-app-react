@@ -5,9 +5,8 @@ import { MdFavorite } from 'react-icons/md';
 import Loader from 'react-loader-spinner';
 import { requestFavoriteRecipeDataByUserId, requestRecentRecipeData } from '../Redux/Actions/recipeActions';
 import { getUserInfo } from '../Helpers/getUserInfo';
-import Search from './Search'
 import RecipeTile from './RecipeTile';
-import Nav from './Nav';
+import Header from './Header';
 
 
 function Dashboard(props) {
@@ -33,7 +32,7 @@ function Dashboard(props) {
 
     return(
         <div>
-            <Nav />
+            <Header />
             <div className='outer-content-container'>
                 {props.loading ?
                     (
@@ -46,9 +45,6 @@ function Dashboard(props) {
                     ) :
                     (
                         <div>
-                            <div>
-                                <Search />
-                            </div>
                             <h1>
                             <MdFavorite title='heart' size={30} style={{ color: 'red' }} /> Favorite Recipes
                             </h1>
