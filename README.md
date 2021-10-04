@@ -2,7 +2,7 @@
 
 ## Description
 
-- This front-end web application lets users view, add, and update recipes. It was built using React and Redux libraries. To run it, you will need to install the back-end server application available at https://github.com/kbehnken/recipe-api.
+- This front-end web application lets users view, add, and update recipes. It was built using React and Redux libraries. To run it, you will need to install the back-end server application available at https://github.com/kbehnken/recipe-api-mysql.
 
 ## Getting Started
 
