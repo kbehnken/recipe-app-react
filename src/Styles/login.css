@@ -19,3 +19,10 @@
 #login-container div {
     margin: 0px 0px 10px;
 }
+
+.disclaimer {
+    font-size: small;
+    color: tomato;
+    background-color: #eee;
+    padding: 5px;
+}

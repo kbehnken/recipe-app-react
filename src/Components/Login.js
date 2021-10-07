@@ -73,6 +73,11 @@ function Login(props) {
                         Login
                     </button>
                 </div>
+                <div className="disclaimer">
+                    <p>
+                        HEADS UP! This app is intended for demo purposes only. Any changes you make will be lost during scheduled site refresh. 
+                    </p>
+                </div>
             </div>
         </div>
     )
