@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory, Redirect } from 'react-router-dom';
 import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
@@ -17,6 +17,14 @@ function Login(props) {
     const togglePasswordVisibility = () => {
         return setShowPassword(!showPassword);
     };
+    const demo = process.env.REACT_APP_DEMO;
+    useEffect(() => {
+        if (demo) {
+            setEmail('guest@recipe-box.com');
+            setPassword('demo12345678');
+        }
+    }, [demo])
+
     if (isLoggedIn()) {
         return (
             <Redirect to='/' />
