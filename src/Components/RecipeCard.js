@@ -8,7 +8,7 @@ import Loader from 'react-loader-spinner';
 import { requestRecipeDataById, addFavoriteRecipeData, removeFavoriteRecipeData, clearRecipeData } from '../Redux/Actions/recipeActions';
 import { authHeader } from '../Helpers/authHeader';
 import { getUserInfo } from '../Helpers/getUserInfo';
-import Nav from './Nav';
+import Header from './Header';
 
 function RecipeCard(props) {
     const dispatch = useDispatch();
@@ -54,7 +54,7 @@ function RecipeCard(props) {
     
     return (
         <div>
-            <Nav />
+            <Header />
             <div className='outer-content-container' key={recipe.recipe_id}>
                 {loading ?
                     (

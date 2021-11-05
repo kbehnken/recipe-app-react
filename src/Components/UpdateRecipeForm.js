@@ -9,7 +9,7 @@ import TextField from '@material-ui/core/TextField';
 // import Button from '@material-ui/core/Button';
 import { requestRecipeDataById, updateStoredRecipeData, updateActiveRecipeData, clearRecipeData, addIngredientData, removeIngredientData } from '../Redux/Actions/recipeActions';
 import { authHeader } from '../Helpers/authHeader';
-import Nav from './Nav';
+import Header from './Header';
 
 function UpdateRecipeForm(props) {
     const dispatch = useDispatch();
@@ -80,7 +80,7 @@ function UpdateRecipeForm(props) {
 
     return (
         <div>
-            <Nav />
+            <Header />
             <div className='outer-content-container'>
                 {loading ?
                     (

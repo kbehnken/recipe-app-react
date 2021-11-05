@@ -6,7 +6,7 @@ import { addRecipeData, updateActiveRecipeData, clearRecipeData, addIngredientDa
 import TextField from '@material-ui/core/TextField';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Nav from './Nav';
+import Header from './Header';
 
 function CreateRecipeForm(props) {
     const dispatch = useDispatch();
@@ -58,7 +58,7 @@ function CreateRecipeForm(props) {
 
     return(
         <div>
-            <Nav />
+            <Header />
             <div className='outer-content-container'>
                 <p style={{textAlign: 'center'}}>
                     Fill out the form below and click the Add button to add a new recipe to the recipe box.<br /><br />
