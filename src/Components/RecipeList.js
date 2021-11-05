@@ -18,7 +18,7 @@ function RecipeList(props) {
         return cols - (mappedRecipes.length % cols);
     })()
     for(let i = 0; i <= padding; i++) {
-        mappedRecipes.push(<PaddingTile />)
+        mappedRecipes.push(<PaddingTile key={i} />)
     }
 
     return(
@@ -31,7 +31,7 @@ function RecipeList(props) {
                 ) :
                 (
                     <div>
-                        <div className='flex-between-wrap'>
+                        <div className='flex-between flex-wrap'>
                             {mappedRecipes}
                         </div>
                     </div>
