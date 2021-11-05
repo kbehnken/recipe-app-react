@@ -5,8 +5,8 @@ import { MdFavorite } from 'react-icons/md';
 import Loader from 'react-loader-spinner';
 import { requestFavoriteRecipeDataByUserId, requestRecentRecipeData } from '../Redux/Actions/recipeActions';
 import { getUserInfo } from '../Helpers/getUserInfo';
-import RecipeTile from './RecipeTile';
 import Header from './Header';
+import RecipeList from './RecipeList';
 
 
 function Dashboard(props) {
@@ -17,18 +17,6 @@ function Dashboard(props) {
         dispatch(requestFavoriteRecipeDataByUserId(user.user_id));
         dispatch(requestRecentRecipeData());
     },[dispatch, user.user_id])
-
-    const mappedRecipes = props.recipes.map((item) => {
-        return (
-            <RecipeTile  key={item.recipe_id} recipe={item} />
-        );
-    })
-
-    const mappedRecentRecipes = props.recentRecipes.map((item) => {
-        return (
-            <RecipeTile  key={item.recipe_id} recipe={item} />
-        );
-    })
 
     return(
         <div>
@@ -48,31 +36,16 @@ function Dashboard(props) {
                             <h1>
                             <MdFavorite title='heart' size={30} style={{ color: 'red' }} /> Favorite Recipes
                             </h1>
-                            {mappedRecipes.length === 0 ?
-                                (
-                                    <p style={{textAlign: 'center'}}>
-                                        You have no favorite recipes to display. <Link to='all-recipes'>Click here</Link> to browse all recipes.
-                                    </p>
-                                ) :
-                                (
-                                    <div className='flex-between-wrap'>
-                                        {mappedRecipes}
-                                    </div>
-                                )
-                            }
-                            <div>
-                                <hr />
-                                <h1>
-                                    Recently Added Recipes
-                                </h1>
-                                <div className='flex-between-wrap'>
-                                    {mappedRecentRecipes}
-                                </div>
-                                <div style={{textAlign: 'right'}}>
-                                    <Link to='all-recipes'>
-                                        View All
-                                    </Link>
-                                </div>
+                            <RecipeList recipes={props.recipes} />
+                            <hr />
+                            <h1>
+                                Recently Added Recipes
+                            </h1>
+                            <RecipeList recipes={props.recipes} />
+                            <div style={{textAlign: 'right'}}>
+                                <Link to='all-recipes'>
+                                    View All
+                                </Link>
                             </div>
                         </div>
                     )
