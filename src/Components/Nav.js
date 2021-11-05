@@ -57,8 +57,8 @@ export default function Nav() {
                 </div>
             </nav>
             <div id='hamburger-nav'>
-                <div className='hamburger-icon' style={{width: '18px'}}>
-                    <GiHamburgerMenu onClick={toggleMenuVisibility} style={{cursor: 'pointer'}} />
+                <div className='hamburger-icon'>
+                    <GiHamburgerMenu onClick={toggleMenuVisibility} style={{cursor: 'pointer'}} size={20} />
                     {showMenu === true ?
                         (
                             <menu>
