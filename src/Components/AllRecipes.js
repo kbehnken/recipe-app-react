@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import { requestRecipeData } from '../Redux/Actions/recipeActions';
-import Search from './Search'
+import Header from './Header';
 import RecipeTile from './RecipeTile';
-import Nav from './Nav';
+
 
 function AllRecipes(props) {
     const dispatch = useDispatch();
@@ -20,7 +20,7 @@ function AllRecipes(props) {
     })
     return(
         <div>
-            <Nav />
+            <Header />
             <div className='outer-content-container'>
                 {props.loading ?
                     (
@@ -33,10 +33,7 @@ function AllRecipes(props) {
                     ) :
                     (
                         <div>
-                            <div>
-                                <Search />
-                            </div>
-                            <div className='flex-between-wrap'>
+                            <div className='flex-between flex-wrap'>
                                 {mappedRecipes}
                             </div>
                         </div>

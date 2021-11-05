@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Search from './Search'
 import RecipeTile from './RecipeTile';
-import Nav from './Nav';
+import Header from './Header';
 
 function SearchResults(props) {
     const mappedRecipes = props.recipes.map((item) => {
@@ -14,11 +13,8 @@ function SearchResults(props) {
     
     return(
         <div>
-            <Nav />
+            <Header />
             <div className='outer-content-container'>
-                <div>
-                    <Search />
-                </div>
                 <div>
                     {mappedRecipes.length === 0 ?
                         (

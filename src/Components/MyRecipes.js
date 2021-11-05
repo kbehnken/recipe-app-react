@@ -4,9 +4,8 @@ import { connect, useDispatch } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import { requestRecipeDataByUserId } from '../Redux/Actions/recipeActions';
 import { getUserInfo } from '../Helpers/getUserInfo';
-import Search from './Search'
 import RecipeTile from './RecipeTile';
-import Nav from './Nav';
+import Header from './Header';
 
 function MyRecipes(props) {
     const dispatch = useDispatch();
@@ -23,7 +22,7 @@ function MyRecipes(props) {
     })
     return(
         <div>
-            <Nav />
+            <Header />
             <div className='outer-content-container'>
                 {props.loading ?
                     (
@@ -36,9 +35,6 @@ function MyRecipes(props) {
                     ) :
                     (
                         <div>
-                            <div>
-                                <Search />
-                            </div>
                             {mappedRecipes.length === 0 ?
                                 (
                                     <p style={{textAlign: 'center'}}>
@@ -46,7 +42,7 @@ function MyRecipes(props) {
                                     </p>
                                 ) :
                                 (
-                                    <div className='flex-between-wrap'>
+                                    <div className='flex-between flex-wrap'>
                                         {mappedRecipes}
                                     </div>
                                 )
