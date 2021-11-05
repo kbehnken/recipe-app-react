@@ -51,7 +51,9 @@ function Login(props) {
         <div id='outer-login-container'>
             <div id='login-container'>
                 <div>
-                    <img src='/images/broccoli.png' alt='broccoli' style={{width:'150px', marginBottom: '25px'}} />
+                    <img src='/images/broccoli.png' alt='broccoli' style={{width:'150px', marginBottom: '10px'}} />
+                </div>
+                <div>
                     <TextField required type='email' name='email' variant='outlined' label='Email Address' autoFocus={true} value={email} onChange={e => setEmail(e.target.value)} style={{width: '100%'}} />
                 </div>
                 {showPassword === false ?
