@@ -41,7 +41,7 @@ function Dashboard(props) {
                             <h1>
                                 Recently Added Recipes
                             </h1>
-                            <RecipeList recipes={props.recipes} />
+                            <RecipeList recipes={props.recentRecipes} />
                             <div style={{textAlign: 'right'}}>
                                 <Link to='all-recipes'>
                                     View All
